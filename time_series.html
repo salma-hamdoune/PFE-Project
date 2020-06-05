@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Visualisation des anomalies au sein du comportement Client</title>
+
+	<!-- stylesheets -->
+	<link href="assets/fonts/font-roboto.css" rel="stylesheet">
+	<link href="assets/bootstrap/bootstrap4-alpha3.min.css" rel="stylesheet">
+	<link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="assets/web-analytics/style.css" rel="stylesheet">
+
+	<!-- scripts -->
+
+
+</head>
+
+<body>
+	<!-- header -->
+	<nav class="navbar navbar-fixed-top" id="header">
+		<link rel="stylesheet" href="styles.css">
+		<img class="img" src="img/logo.svg" alt="logo">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<div id="sidebar-toggle-button">
+					<i class="fa fa-bars" aria-hidden="true"></i>
+				</div>
+				<div class="brand">
+					<a href="web-analytics-overview.html">
+						<span class="hidden-xs-down m-r-3">Visualisation des anomalies au sein du comportement Client </span><span class="lead">Time Series Dashboard</span>
+					</a>
+				
+				</div>
+
+			</div>
+		</div>
+	</nav>
+	<!-- /header -->
+
+
+
+	<!-- page-content-wrapper -->
+	<div class="page-content-toggle" id="page-content-wrapper">
+			<!-- 1st row -->
+		<div class="plot1">
+						<!-- Create a div where the graph will take place -->
+			<div id="area"></div> 
+				
+					<!--	<div id="area"></div> -->
+		</div>				
+
+	</div>
+
+	
+    
+	
+	<script src="https://d3js.org/d3.v5.js"></script>
+		<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.13.0/d3-legend.js"></script>
+	<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+
+	<script src="area_chart.js"></script>
+
+
+
+
+</body>
+
+</html>
