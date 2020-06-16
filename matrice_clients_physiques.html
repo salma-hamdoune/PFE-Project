@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+svg {
+  font: 10px sans-serif;
+  padding: 10px;
+}
+
+.axis,
+.frame {
+  shape-rendering: crispEdges;
+}
+
+.axis line {
+  stroke: #ddd;
+}
+
+.axis path {
+  display: none;
+}
+
+.cell text {
+  font-weight: bold;
+  text-transform: capitalize;
+  fill: black;
+}
+
+.frame {
+  fill: none;
+  stroke: #aaa;
+}
+
+circle {
+  fill-opacity: .7;
+}
+
+circle.hidden {
+  fill: #ccc !important;
+}
+
+.extent {
+  fill: #000;
+  fill-opacity: .125;
+  stroke: #fff;
+}
+
+</style>
+<body>
+<script src="//d3js.org/d3.v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.13.0/d3-legend.js"></script>
+<script>
+
+var width = 960,
+    size = 230,
+    padding = 20;
+
+var x = d3.scaleLinear()
+    .range([padding / 2, size - padding / 2]);
+
+var y = d3.scaleLinear()
+    .range([size - padding / 2, padding / 2]);
+
+var xAxis = d3.axisBottom()
+    .scale(x)
+    .ticks(6);
+
+var yAxis = d3.axisLeft()
+    .scale(y)
+    .ticks(6);
+
+var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+// set the dimensions and margins of the graph
+// var margin = {top: 30, right: 20, bottom: 30, left: 100},
+//     width = 960 - margin.left - margin.right,
+//     height = 500 - margin.top - margin.bottom,
+//     padding = 20;
+// append the svg object to the body of the page
+// var svg = d3.select("#scatter_matrix")
+//   .append("svg")
+//     .attr("width", width + margin.left + margin.right)
+//     .attr("height", height + margin.top + margin.bottom)
+//   .append("g")
+//     .attr("transform",
+//           "translate(" + margin.left + "," + margin.top + ")");
+
+
+d3.csv("clients_physiques.csv", function(error, data) {
+  if (error) throw error;
+
+  var domainByTrait = {},
+      traits = d3.keys(data[0]).filter(function(d) { return d !== "Catégorie_socio_professionnelle"; }),
+      n = traits.length;
+
+  traits.forEach(function(trait) {
+    //  domainByTrait[trait] = d3.extent(data, function(d) { return d[trait]; });
+     domainByTrait[trait]=[d3.min(data, function(d) {
+       return +d[trait]; }), d3.max(data, function(d) {
+       return +d[trait]; })]
+
+});
+
+  xAxis.tickSize(size * n);
+  yAxis.tickSize(-size * n);
+
+  var brush = d3.brush()
+      .on("start", brushstart)
+      .on("brush", brushmove)
+      .on("end", brushend)
+      .extent([[0,0],[size,size]]);
+
+  var svg = d3.select("body").append("svg")
+       .attr("width", size * n + padding + 150)
+       .attr("height", size * n + padding + 150)
+    .append("g")
+      .attr("transform", "translate(" + padding + "," + padding / 2 + ")");
+
+
+    // legend
+
+    const legendGroup = svg.append('g')
+        .attr('transform', `translate(${width+900}, 10)`);
+
+    const legend = d3.legendColor()
+        .shape('circle')
+        .shapePadding(30)
+        .scale(color);
+
+
+    // -1- Create a tooltip div that is hidden by default:
+  var tooltip = d3.select("#bubble")
+    .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "black")
+      .style("border-radius", "5px")
+      .style("padding", "10px")
+      .style("color", "white")
+
+  // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
+  var showTooltip = function(d) {
+    tooltip
+      .transition()
+      .duration(200)
+    tooltip
+      .style("opacity", 1)
+      //.html(d => {
+        // let content =`<div class = "Type" > ${d.type} </div>`
+        // content += `<div class = "Date" > ${d.DATE} </div>`
+        // content += `<div class = "Amount" > ${d.AMOUNT} </div>`
+        // return content})
+      .html("Type: " + d.Catégorie_socio_professionnelle)
+      .style("left", (d3.mouse(this)[0]+30) + "px")
+      .style("top", (d3.mouse(this)[1]+30) + "px")
+  }
+  var moveTooltip = function(d) {
+    tooltip
+      .style("left", (d3.mouse(this)[0]+30) + "px")
+      .style("top", (d3.mouse(this)[1]+30) + "px")
+  }
+  var hideTooltip = function(d) {
+    tooltip
+      .transition()
+      .duration(200)
+      .style("opacity", 0)
+  }
+//------------------end tooltip code--------// 
+    
+
+
+
+  svg.selectAll(".x.axis")
+      .data(traits)
+    .enter().append("g")
+      .attr("class", "x axis")
+      .attr("transform", function(d, i) { return "translate(" + (n - i - 1) * size + ",0)"; })
+      .each(function(d) { x.domain(domainByTrait[d]); d3.select(this).call(xAxis); });
+
+  svg.selectAll(".y.axis")
+      .data(traits)
+    .enter().append("g")
+      .attr("class", "y axis")
+      .attr("transform", function(d, i) { return "translate(0," + i * size + ")"; })
+      .each(function(d) { y.domain(domainByTrait[d]); d3.select(this).call(yAxis); });
+
+  var cell = svg.selectAll(".cell")
+      .data(cross(traits, traits))
+    .enter().append("g")
+      .attr("class", "cell")
+      .attr("transform", function(d) { return "translate(" + (n - d.i - 1) * size + "," + d.j * size + ")"; })
+      .each(plot);
+
+  // Titles for the diagonal.
+  cell.filter(function(d) { return d.i === d.j; }).append("text")
+      .attr("x", padding)
+      .attr("y", padding)
+      .attr("dy", ".71em")
+      .text(function(d) { return d.x; });
+
+  cell.call(brush);
+
+  // update and call legend
+  legendGroup.call(legend);
+    legendGroup.selectAll('text').attr('fill','black');
+
+  function plot(p) {
+    var cell = d3.select(this);
+
+    x.domain(domainByTrait[p.x]);
+    y.domain(domainByTrait[p.y]);
+
+    cell.append("rect")
+        .attr("class", "frame")
+        .attr("x", padding / 2)
+        .attr("y", padding / 2)
+        .attr("width", size - padding)
+        .attr("height", size - padding);
+
+    cell.selectAll("circle")
+        .data(data)
+      .enter().append("circle")
+        .attr("cx", function(d) { return x(d[p.x]); })
+        .attr("cy", function(d) { return y(d[p.y]); })
+        .attr("r", 4)
+        .style("fill", function(d) { return color(d.Catégorie_socio_professionnelle); })
+        // -3- Trigger the functions
+        .on("mouseover", showTooltip )
+        .on("mousemove", moveTooltip )
+        .on("mouseleave", hideTooltip );
+;
+  }
+
+  var brushCell;
+
+  // Clear the previously-active brush, if any.
+  function brushstart(p) {
+    if (brushCell !== this) {
+      d3.select(brushCell).call(brush.move, null);
+      brushCell = this;
+    x.domain(domainByTrait[p.x]);
+    y.domain(domainByTrait[p.y]);
+    }
+  }
+
+  // Highlight the selected circles.
+  function brushmove(p) {
+    var e = d3.brushSelection(this);
+    svg.selectAll("circle").classed("hidden", function(d) {
+      return !e
+        ? false
+        : (
+          e[0][0] > x(+d[p.x]) || x(+d[p.x]) > e[1][0]
+          || e[0][1] > y(+d[p.y]) || y(+d[p.y]) > e[1][1]
+        );
+    });
+  }
+
+  // If the brush is empty, select all circles.
+  function brushend() {
+    var e = d3.brushSelection(this);
+    if (e === null) svg.selectAll(".hidden").classed("hidden", false);
+  }
+});
+
+function cross(a, b) {
+  var c = [], n = a.length, m = b.length, i, j;
+  for (i = -1; ++i < n;) for (j = -1; ++j < m;) c.push({x: a[i], i: i, y: b[j], j: j});
+  return c;
+}
+
+</script>

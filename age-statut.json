@@ -1,0 +1,139 @@
+{
+    "nodes": [
+      {"id": "18-25", "group": 1},
+      {"id": "26-35", "group": 1},
+      {"id": "36-45", "group": 1},
+      {"id": "46-55", "group": 1},
+      {"id": "56-65", "group": 1},
+      {"id": ">=66", "group": 1},
+      {"id": "salarié", "group": 2},
+      {"id": "étudiant", "group": 2},
+      {"id": "retraité", "group": 2},
+      {"id": "commerçant", "group": 3},
+      {"id": "agriculteur", "group": 3},
+      {"id": "GE", "group": 6},
+      {"id": "PME", "group": 6},
+      {"id": "TPE", "group": 6}
+
+    ],
+    "links": [
+      {"source": "18-25", "target": "retraité", "value": 1},
+
+      {"source": "26-35", "target": "retraité", "value": 1},
+
+      {"source": "46-55", "target": "étudiant", "value": 2},
+      {"source": "46-55", "target": "GE", "value": 1},
+
+
+      {"source": ">=66", "target": "salarié", "value":1},
+      {"source": ">=66", "target": "étudiant", "value":1},
+
+
+        {
+          "target": "étudiant",
+          "source": "18-25",
+          "value": 18
+        },
+        {
+          "target": "salarié",
+          "source": "18-25",
+          "value": 4
+        },
+        {
+          "target": "agriculteur",
+          "source": "18-25",
+          "value": 1
+        },
+        {
+          "target": "commerçant",
+          "source": "18-25",
+          "value": 1
+        },
+        {
+          "target": "salarié",
+          "source": "26-35",
+          "value": 10
+        },
+        {
+          "target": "étudiant",
+          "source": "26-35",
+          "value": 5
+        },
+        {
+          "target": "agriculteur",
+          "source": "26-35",
+          "value": 4
+        },
+        {
+          "target": "commerçant",
+          "source": "26-35",
+          "value": 4
+        },
+        {
+          "target": "salarié",
+          "source": "36-45",
+          "value": 12
+        },
+        {
+          "target": "commerçant",
+          "source": "36-45",
+          "value": 6
+        },
+        {
+          "target": "agriculteur",
+          "source": "36-45",
+          "value": 5
+        },
+        {
+          "target": "salarié",
+          "source": "46-55",
+          "value": 11
+        },
+        {
+          "target": "commerçant",
+          "source": "46-55",
+          "value": 6
+        },
+        {
+          "target": "agriculteur",
+          "source": "46-55",
+          "value": 1
+        },
+        {
+          "target": "commerçant",
+          "source": "56-65",
+          "value": 9
+        },
+        {
+          "target": "salarié",
+          "source": "56-65",
+          "value": 3
+        },
+        {
+          "target": "agriculteur",
+          "source": "56-65",
+          "value": 2
+        },
+        {
+          "target": "retraité",
+          "source": ">=66",
+          "value": 30
+        },
+        {
+          "target": "agriculteur",
+          "source": ">=66",
+          "value": 2
+        },
+        {
+          "target": "commerçant",
+          "source": ">=66",
+          "value": 2
+        }
+      
+
+
+
+
+    ]
+  }
+  
