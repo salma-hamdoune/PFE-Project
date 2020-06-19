@@ -27,14 +27,14 @@
   </div>
 
     <div id="transaction_type">
-        <strong>Types de transactions</strong>
+        <strong>Types des transactions</strong>
         <span class="reset" style="display: none;">Selectionné: <span class="filter"></span></span>
         <a class="reset" href="javascript:transTypeChart.filterAll();dc.redrawAll();" style="display: none;">Rafraîchir</a>
     
         <div class="clearfix"></div>
     </div>
     <div id="month">
-        <strong>Volumes mensuels de transactions</strong>
+        <strong>Volumes mensuels des transactions</strong>
         <span class="reset" style="display: none;">Selectionné: <span class="filter"></span></span>
         <a class="reset" href="javascript:monthNameChart.filterAll();dc.redrawAll();" style="display: none;">Rafraîchir</a>
 
@@ -110,7 +110,7 @@
 		 	var transTypeDim = ndx.dimension(function (d) { return d["type"]; });
             var monthNameDim = ndx.dimension(function (d) { return d["month"]; });
             var clients = ndx.dimension(function (d) { return d["Account_No"]; });
-            var dates = ndx.dimension(function (d){ return d["DATE"]});
+            // var dates = ndx.dimension(function (d){ return d["DATE"]});
 		 	var dateDim = ndx.dimension(function (d) { return d.DATE; });
             var exptDim = ndx.dimension(function(d) {return d.Account_No;});
             var balDim = ndx.dimension(function(d) {return d.BALANCE_AMT;});
@@ -123,13 +123,16 @@
             var exptGroup = exptDim.group();
             var balGroup = balDim.group().reduceSum(function(d) {return d.index;});
 
-            var client_default = "A"; // default fiscal year in the selection drop down
+
+            // Client Selector
+
+            var client_default = "A"; // default client in the selection drop down
 
 		    // drop down selection
 		    var selector = d3.select("#clients");
             console.log(clientsGroup.all());
             
-// append option values to clients select input
+            // append option values to clients select input
             selector.selectAll("option")
                 .data(clientsGroup.all())
                 .enter()
@@ -146,14 +149,20 @@
 		     selector.property("value", client_default).on("change", function() { clients.filter(this.value); dc.redrawAll(); });
              clients.filter(client_default);
 
-             visCount
-				.dimension(ndx)
-				.group(all);
+            //  visCount
+			// 	.dimension(ndx)
+			// 	.group(all);
+
+            // Transactions types Chart
+
              transTypeChart
                 .width(500)
 		 		.dimension(transTypeDim)
 		 		.group(transTypeGroup)
 		 		//  .elasticX(true);
+
+
+            // Months Chart
 
              monthNameChart
                 .width(500)
@@ -170,7 +179,10 @@
             //         .group(fluctuationGroup)
                     // .elasticX(true)
             		// .data(function (group) { return group.top(10); });
-            
+
+
+             // Amounts Chart
+    
             var timeFormat = d3.time.format.iso;
 
             var hours = ndx.dimension(function(d){
@@ -180,9 +192,9 @@
             var totalByHour = hours.group().reduceSum(function(d){
                 return d.AMOUNT;
                 });
-            console.log(hours.group());
-
-                areaChart
+            // console.log(hours.group());
+            
+            areaChart
                 .width(1000)
                 .height(250)
                 .dimension(hours)
@@ -195,12 +207,12 @@
                 .xAxis().ticks(5)
                 areaChart.margins().left = 80
 
-                // Balance Chart
+            // Balance Chart
 
-                var totalbalByHour = hours.group().reduceSum(function(d){
+            var totalbalByHour = hours.group().reduceSum(function(d){
                 return d.DEPOSIT_AMT - d.WITHDRAWAL_AMT;
                 });
-                areaChartBal
+            areaChartBal
                 .width(1000)
                 .height(250)
                 .dimension(hours)
@@ -211,7 +223,10 @@
                 // .xUnits(d3.time.hours)
                 .renderArea(true)
                 .xAxis().ticks(5)
-                areaChartBal.margins().left = 80
+                areaChartBal.margins().left = 80;
+
+
+
 		 	dc.renderAll();
 
 		 });
