@@ -11,21 +11,30 @@
     <script type="text/javascript" src="https://cvlassets.s3.amazonaws.com/d3.js"></script>
     <script type="text/javascript" src="https://cvlassets.s3.amazonaws.com/crossfilter.js"></script>
     <script type="text/javascript" src="https://cvlassets.s3.amazonaws.com/dc.js"></script>
+    
+    <!-- <script src="https://unpkg.com/d3@5/dist/d3.js"></script>
+    <script src="https://unpkg.com/crossfilter2@1.4/crossfilter.js"></script>
+    <script src="https://unpkg.com/dc@3/dc.js"></script> -->
 
 
     <h1>Dashboard des transactions</h1>
+    <div class="tool radius">
+        <h5 class="text-uppercase">Client</h5>
+        <select class="form-control" id="clients"></select>
+    </div>
 
+    
   </div>
 
     <div id="transaction_type">
-        <strong>Type de transactions</strong>
+        <strong>Types de transactions</strong>
         <span class="reset" style="display: none;">Selectionné: <span class="filter"></span></span>
         <a class="reset" href="javascript:transTypeChart.filterAll();dc.redrawAll();" style="display: none;">Rafraîchir</a>
     
         <div class="clearfix"></div>
     </div>
     <div id="month">
-        <strong>Mois</strong>
+        <strong>Volumes mensuels de transactions</strong>
         <span class="reset" style="display: none;">Selectionné: <span class="filter"></span></span>
         <a class="reset" href="javascript:monthNameChart.filterAll();dc.redrawAll();" style="display: none;">Rafraîchir</a>
 
@@ -43,7 +52,7 @@
 -->
 
     <div id="area-chart">
-        <strong>Montants</strong>
+        <strong>Montants journaliers des transactions</strong>
         <span class="reset" style="display: none;">Selectionné: <span class="filter"></span></span>
         <a class="reset" href="javascript:areaChart.filterAll();dc.redrawAll();" style="display: none;">Rafraîchir</a>
 
@@ -66,7 +75,7 @@
                                 .radius(100)
                                 .innerRadius(50),
               monthNameChart = dc.rowChart("#month"),
-              fluctuationChart = dc.pieChart('#Amounts'),
+            //   fluctuationChart = dc.pieChart('#Amounts'),
               areaChart = dc.lineChart("#area-chart"),
               visCount = dc.dataCount(".dc-data-count"),
 			  visTable = dc.dataTable(".dc-data-table");;
@@ -92,14 +101,40 @@
 
 		 	var transTypeDim = ndx.dimension(function (d) { return d["type"]; });
             var monthNameDim = ndx.dimension(function (d) { return d["month"]; });
-            var fluctuation = ndx.dimension(function (d) { return d["Account_No"]; });
+            var clients = ndx.dimension(function (d) { return d["Account_No"]; });
             var dates = ndx.dimension(function (d){ return d["DATE"]});
 		 	var dateDim = ndx.dimension(function (d) { return d.DATE; });
+            var exptDim = ndx.dimension(function(d) {return d.Account_No;});
+
 
 		 	var transTypeGroup = transTypeDim.group();
             var monthNameGroup = monthNameDim.group();
-            var fluctuationGroup = fluctuation.group();
+            var clientsGroup = clients.group();
 		 	var dateGroup = dateDim.group();
+            var exptGroup = exptDim.group();
+
+            var client_default = "A"; // default fiscal year in the selection drop down
+
+		    // drop down selection
+		    var selector = d3.select("#clients");
+            console.log(clientsGroup.all());
+            
+// append option values to clients select input
+            selector.selectAll("option")
+                .data(clientsGroup.all())
+                .enter()
+                .append("option")
+                .attr("value", function(d) {
+                    return d.key;
+                })
+                .text(function(d) {
+                    return d.key;
+                });
+		
+		    // set default client
+		    // define on change event
+		     selector.property("value", client_default).on("change", function() { clients.filter(this.value); dc.redrawAll(); });
+             clients.filter(client_default);
 
              visCount
 				.dimension(ndx)
@@ -118,11 +153,11 @@
 		 		.elasticX(true);
 		// 		.data(function (group) { return group.top(10); });
 
-            fluctuationChart
-                    .width(500)
-                    .height(300)
-                    .dimension(fluctuation)
-                    .group(fluctuationGroup)
+            // fluctuationChart
+            //         .width(500)
+            //         .height(300)
+            //         .dimension(fluctuation)
+            //         .group(fluctuationGroup)
                     // .elasticX(true)
             		// .data(function (group) { return group.top(10); });
             
@@ -148,7 +183,7 @@
                 // .xUnits(d3.time.hours)
                 .renderArea(true)
                 .xAxis().ticks(5)
-			
+                areaChart.margins().left = 80
 
 			visTable
 				.dimension(dateDim)
