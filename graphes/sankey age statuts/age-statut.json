@@ -1,0 +1,168 @@
+{
+    "nodes": [
+      {"id": "18-25", "group": 1},
+      {"id": "26-35", "group": 1},
+      {"id": "36-45", "group": 1},
+      {"id": "46-55", "group": 1},
+      {"id": "56-65", "group": 1},
+      {"id": ">=66", "group": 1},
+      {"id": "salarié", "group": 2},
+      {"id": "étudiant", "group": 2},
+      {"id": "retraité", "group": 2},
+      {"id": "commerçant", "group": 3},
+      {"id": "agriculteur", "group": 3},
+      {"id": "GE", "group": 6},
+      {"id": "PME", "group": 6},
+      {"id": "TPE", "group": 6},
+      {"id": "Personne physique", "group": 6},
+      {"id": "Personne morale", "group": 6}
+
+  
+
+    ],
+    "links": [
+      {"source": "Personne physique", "target": "salarié", "value": 41},
+      {"source": "Personne physique", "target": "étudiant", "value": 26},
+      {"source": "Personne physique", "target": "retraité", "value": 32},
+      {"source": "Personne physique", "target": "commerçant", "value": 28},
+      {"source": "Personne physique", "target": "agriculteur", "value": 15},
+      {"source": "Personne morale", "target": "GE", "value": 10},
+      {"source": "Personne morale", "target": "TPE", "value": 20},
+      {"source": "Personne morale", "target": "PME", "value": 30},
+
+
+      {
+        "source": "étudiant",
+        "target": "18-25",
+        "value": 18
+      },
+      {
+        "source": "salarié",
+        "target": "18-25",
+        "value": 4
+      },
+      {
+        "source": "agriculteur",
+        "target": "18-25",
+        "value": 1
+      },
+      {
+        "source": "commerçant",
+        "target": "18-25",
+        "value": 1
+      },
+      {
+        "source": "retraité",
+        "target": "18-25",
+        "value": 1
+      },
+      {
+        "source": "salarié",
+        "target": "26-35",
+        "value": 10
+      },
+      {
+        "source": "étudiant",
+        "target": "26-35",
+        "value": 5
+      },
+      {
+        "source": "agriculteur",
+        "target": "26-35",
+        "value": 4
+      },
+      {
+        "source": "commerçant",
+        "target": "26-35",
+        "value": 4
+      },
+      {
+        "source": "retraité",
+        "target": "26-35",
+        "value": 1
+      },
+      {
+        "source": "salarié",
+        "target": "36-45",
+        "value": 12
+      },
+      {
+        "source": "commerçant",
+        "target": "36-45",
+        "value": 6
+      },
+      {
+        "source": "agriculteur",
+        "target": "36-45",
+        "value": 5
+      },
+      {
+        "source": "salarié",
+        "target": "46-55",
+        "value": 11
+      },
+      {
+        "source": "commerçant",
+        "target": "46-55",
+        "value": 6
+      },
+      {
+        "source": "étudiant",
+        "target": "46-55",
+        "value": 2
+      },
+      {
+        "source": "GE",
+        "target": "46-55",
+        "value": 1
+      },
+      {
+        "source": "agriculteur",
+        "target": "46-55",
+        "value": 1
+      },
+      {
+        "source": "commerçant",
+        "target": "56-65",
+        "value": 9
+      },
+      {
+        "source": "salarié",
+        "target": "56-65",
+        "value": 3
+      },
+      {
+        "source": "agriculteur",
+        "target": "56-65",
+        "value": 2
+      },
+      {
+        "source": "retraité",
+        "target": ">=66",
+        "value": 30
+      },
+      {
+        "source": "agriculteur",
+        "target": ">=66",
+        "value": 2
+      },
+      {
+        "source": "commerçant",
+        "target": ">=66",
+        "value": 2
+      },
+      {
+        "source": "salarié",
+        "target": ">=66",
+        "value": 1
+      },
+      {
+        "source": "étudiant",
+        "target": ">=66",
+        "value": 1
+      }
+    
+
+    ]
+  }
+  

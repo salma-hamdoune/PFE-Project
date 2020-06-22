@@ -86,11 +86,24 @@ var color = d3.scaleOrdinal(d3.schemeCategory10);
 //           "translate(" + margin.left + "," + margin.top + ")");
 
 
-d3.csv("clients_physiques.csv", function(error, data) {
+d3.csv("tous_les_clients.csv", function(error, data) {
   if (error) throw error;
+  data.forEach(function(d){ d['age'] = +d['age']; });
+  data.forEach(function(d){ d['moyenne_du_solde'] = +d['moyenne_du_solde']; })
+  data.forEach(function(d){ d['max_solde'] = +d['max_solde']; });
+  data.forEach(function(d){ d['max_retrait'] = +d['max_retrait']; });
+  data.forEach(function(d){ d['min_retrait'] = +d['min_retrait']; });
+  data.forEach(function(d){ d['max_depot'] = +d['max_depot']; });
+  data.forEach(function(d){ d['min_depot'] = +d['min_depot']; });
+  data.forEach(function(d){ d['nombre_de_transactions'] = +d['nombre_de_transactions']; });
 
+  var variables = data.columns;
+  variables.forEach(function(d) {
+    console.log("typeof " + d + ": " + typeof(data[1][d]))
+  });
+  data=data.filter(function(d){return d["physique/ morale"] == "Personne physique";})
   var domainByTrait = {},
-      traits = d3.keys(data[0]).filter(function(d) { return d !== "Catégorie_socio_professionnelle"; }),
+      traits = d3.keys(data[0]).filter(function(d) { if (typeof(data[1][d])== "number"){return d ;} }),
       n = traits.length;
 
   traits.forEach(function(trait) {
