@@ -10,11 +10,12 @@
         <!-- Load d3.js -->
     <script type="text/javascript" src="https://cvlassets.s3.amazonaws.com/d3.js"></script>
     <script type="text/javascript" src="https://cvlassets.s3.amazonaws.com/crossfilter.js"></script>
-    <script type="text/javascript" src="https://cvlassets.s3.amazonaws.com/dc.js"></script>
+    <!-- <script type="text/javascript" src="https://cvlassets.s3.amazonaws.com/dc.js"></script> -->
     
     <!-- <script src="https://unpkg.com/d3@5/dist/d3.js"></script>
     <script src="https://unpkg.com/crossfilter2@1.4/crossfilter.js"></script>
     <script src="https://unpkg.com/dc@3/dc.js"></script> -->
+    <script type="text/javascript" src="dc.js"></script> 
 
 
     <h1>Dashboard des transactions</h1>
@@ -54,6 +55,13 @@
         <div class="clearfix"></div>
     </div>
     
+    <!-- <div id="score">
+        <strong>Scores des transactions VS Montants</strong>
+        <span class="reset" style="display: none;">Selectionné: <span class="filter"></span></span>
+        <a class="reset" href="javascript:scoreChart.filterAll();dc.redrawAll();" style="display: none;">Rafraîchir</a>
+
+        <div class="clearfix"></div>
+    </div> -->
     
     <div id="receiver_amount">
         <strong>Montants de transactions réalisées avec chaque compte (Top 10)</strong>
@@ -106,6 +114,8 @@
                                 .radius(100)
                                 .innerRadius(50),
               monthNameChart = dc.rowChart("#month"),
+            //   scoreChart = dc.scatterPlot("#score"),
+
             //   fluctuationChart = dc.pieChart('#Amounts'),
               areaChart = dc.lineChart("#area-chart"),
               areaChartBal = dc.lineChart("#area-chart-bal"),
@@ -119,7 +129,7 @@
 
     // Full dataset could give issues because of gzip
     // var url = "Lekagul Sensor Data.csv.gz";
-    var url = "transactions2018.csv";
+    var url = "transactions2018withscores.csv";
 
 		d3.csv(url,function (err, data) {
 // index,Account_No,DATE,TRANSACTION_DETAILS,WITHDRAWAL_AMT,DEPOSIT_AMT,BALANCE_AMT,year,month,day,type,AMOUNT
@@ -137,24 +147,30 @@
 		 	var transTypeDim = ndx.dimension(function (d) { return d["type"]; });
             var monthNameDim = ndx.dimension(function (d) { return d["month"]; });
             var clients = ndx.dimension(function (d) { return d["Account_No"]; });
-            var days = ndx.dimension(function (d) { return d["day"]; });
 
             // var dates = ndx.dimension(function (d){ return d["DATE"]});
 		 	var dateDim = ndx.dimension(function (d) { return d.DATE; });
             var exptDim = ndx.dimension(function(d) {return d.Account_No;});
             var balDim = ndx.dimension(function(d) {return d.BALANCE_AMT;});
             var receiverDim = ndx.dimension(function(d) {return d.receiver_Account;});
+            var scoreDim = ndx.dimension(function(d) {return d.overall_score;});
+            // transactions amounts
+            var transactionDim=ndx.dimension(function(d) {return d.index;});
+            //  Amounts
+            var amounts= ndx.dimension(function(d) {return d.AMOUNT;});
 
 
 		 	var transTypeGroup = transTypeDim.group();
             var monthNameGroup = monthNameDim.group();
             var clientsGroup = clients.group();
-            var daysGroup = days.group();
+            // var daysGroup = days.group();
 		 	var dateGroup = dateDim.group();
             var exptGroup = exptDim.group();
             // var balGroup = balDim.group().reduceSum(function(d) {return d.index;});
             var receiverGroup = receiverDim.group();
-
+            var transactionsGroup= transactionDim.group();
+            var scoreamountDimension = ndx.dimension(function(d) {return [+d.AMOUNT, +d.overall_score]; });
+            var scoreamountGroup = scoreamountDimension.group();
 
             // Client Selector
             var client_default = "A"; // default client in the selection drop down
@@ -186,19 +202,19 @@
             var day_default = "1"; // default day in the selection drop down
 
             // drop down selection
-            var selector = d3.select("#days");
+            // var selector = d3.select("#days");
             // console.log(daysGroup.all());
              // append option values to days select input
-            selector.selectAll("option")
-                .data(daysGroup.all())
-                .enter()
-                .append("option")
-                .attr("value", function(d) {
-                    return d.key;
-                })
-                .text(function(d) {
-                    return d.key;
-                });
+            // selector.selectAll("option")
+                // .data(daysGroup.all())
+                // .enter()
+                // .append("option")
+                // .attr("value", function(d) {
+                //     return d.key;
+                // })
+                // .text(function(d) {
+                //     return d.key;
+                // });
             // set default day
 		    // define on change event
             // selector.property("value", day_default).on("change", function() { days.filter(this.value); dc.redrawAll(); });
@@ -316,7 +332,24 @@ var fakeGroup = getTops(receiverGroup);
 
 
 
+                // score vs amount chart
+                // scoreChart
+                // .width(768)
+                // .height(480)
+                // .x(d3.scale.linear().domain([6,20]))
+                // .brushOn(false)
+                // .symbolSize(8)
+                // .clipPadding(10)
+                // .yAxisLabel("This is the Y Axis!")
+                // .dimension(scoreamountDimension)
+                // .group(scoreamountGroup);
+
+
 		 	dc.renderAll();
+
+                
+
+           
 
 		 });
 	</script>

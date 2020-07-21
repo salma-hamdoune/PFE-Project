@@ -1,0 +1,470 @@
+{
+"nodes":
+[
+  {
+    "id": "409000611074'",
+    "group": 0
+  },
+  {
+    "id": "409000493201'",
+    "group": 0
+  },
+  {
+    "id": "409000425051'",
+    "group": 0
+  },
+  {
+    "id": "409000405747'",
+    "group": 0
+  },
+  {
+    "id": "409000438611'",
+    "group": 0
+  },
+  {
+    "id": "409000493210'",
+    "group": 0
+  },
+  {
+    "id": "409000438620'",
+    "group": 0
+  },
+  {
+    "id": "1196711'",
+    "group": 0
+  },
+  {
+    "id": "1196428'",
+    "group": 0
+  },
+  {
+    "id": "409000362497'",
+    "group": 0
+  },
+  {
+    "id": "A",
+    "group": 0
+  },
+  {
+    "id": "B",
+    "group": 0
+  },
+  {
+    "id": "INDO GIBL Indiaforensic STL31121",
+    "group": 1
+  },
+  {
+    "id": "INDO GIBL Indiaforensic STL30121",
+    "group": 2
+  },
+  {
+    "id": "BBPS SETMNT FOR DT 010120",
+    "group": 3
+  },
+  {
+    "id": "Indiaforensic VISA ACQ DOM311217",
+    "group": 4
+  },
+  {
+    "id": "Indiaforensic RUPAY POS ACQ31121",
+    "group": 5
+  },
+  {
+    "id": "Indiaforensic VISA ACQ INT 31121",
+    "group": 6
+  },
+  {
+    "id": "Indiaforensic RUPAY POS ACQ01011",
+    "group": 7
+  },
+  {
+    "id": "Indiaforensic VISA ACQ DOM010118",
+    "group": 8
+  },
+  {
+    "id": "TRF TO  Indiaforensic SERVICES I",
+    "group": 9
+  },
+  {
+    "id": "Indiaforensic VISA ACQ INT 30121",
+    "group": 10
+  },
+  {
+    "id": "AEPS Indiaforensic INCOME 301217",
+    "group": 11
+  },
+  {
+    "id": "AEPS Indiaforensic GST 301217",
+    "group": 12
+  },
+  {
+    "id": "AEPS Indiaforensic INCOME 311217",
+    "group": 13
+  },
+  {
+    "id": "AEPS Indiaforensic GST 311217",
+    "group": 14
+  },
+  {
+    "id": "Indiaforensic AEPS NPCI WDL SET",
+    "group": 15
+  },
+  {
+    "id": "Indiaforensic AEPS NPCI DEP SET",
+    "group": 16
+  },
+  {
+    "id": "NEFT/N001180443481243/PAY",
+    "group": 17
+  },
+  {
+    "id": "NEFT/KKBK180018097135/Acc",
+    "group": 18
+  },
+  {
+    "id": "FDRL/REAL TIME GROSS SETTL",
+    "group": 19
+  },
+  {
+    "id": "RTGS/HDFCH18001529675/PAY",
+    "group": 20
+  },
+  {
+    "id": "RTGS/HDFCH18001529703/PAY",
+    "group": 21
+  },
+  {
+    "id": "CASHDEP/VIKASMARG/TP",
+    "group": 22
+  },
+  {
+    "id": "TRF FRM  Indiaforensic SERVICES",
+    "group": 23
+  },
+  {
+    "id": "NEFT/N001180443425160/PAY",
+    "group": 24
+  },
+  {
+    "id": "NEFT/N001180443425213/PAY",
+    "group": 25
+  },
+  {
+    "id": "NEFT/FDRL656260341/Indiaforensic",
+    "group": 26
+  },
+  {
+    "id": "TRF FROM  Indiaforensic SERVICES",
+    "group": 27
+  },
+  {
+    "id": "FDRL/INTERNAL FUND TRANSFE",
+    "group": 28
+  },
+  {
+    "id": "IMPS 3012171C",
+    "group": 29
+  },
+  {
+    "id": "IMPS 311217 1C",
+    "group": 30
+  },
+  {
+    "id": "IMPS 010118 2C",
+    "group": 31
+  },
+  {
+    "id": "IMPS 010118 3C",
+    "group": 32
+  },
+  {
+    "id": "NEFT/AXIC180017700341/Indfor",
+    "group": 33
+  },
+  {
+    "id": "NEFT/SBIN918001464821/Indfor",
+    "group": 34
+  },
+  {
+    "id": "IMPS 010118 4C",
+    "group": 35
+  },
+  {
+    "id": "Sweep Trf To: 40900036427",
+    "group": 36
+  }
+  ,
+  {
+    "id": "1",
+    "group": 37
+  },
+  {
+    "id": "2",
+    "group": 38
+  },
+  {
+    "id": "3",
+    "group": 39
+  },
+  {
+    "id": "4",
+    "group": 40
+  },
+  {
+    "id": "5",
+    "group": 41
+  },
+  {
+    "id": "6",
+    "group": 42
+  }
+],
+"links":
+[
+  {
+    "source": "INDO GIBL Indiaforensic STL31121",
+    "target": "409000611074'",
+    "value": 1
+  },
+  {
+    "source": "INDO GIBL Indiaforensic STL30121",
+    "target": "409000611074'",
+    "value": 1
+  },
+  {
+    "source": "BBPS SETMNT FOR DT 010120",
+    "target": "409000493201'",
+    "value": 1
+  },
+  {
+    "source": "TRF TO  Indiaforensic SERVICES I",
+    "target": "409000438611'",
+    "value": 2
+  },
+  {
+    "source": "Indiaforensic VISA ACQ DOM010118",
+    "target": "409000438611'",
+    "value": 1
+  },
+  {
+    "source": "Indiaforensic RUPAY POS ACQ01011",
+    "target": "409000438611'",
+    "value": 1
+  },
+  {
+    "source": "Indiaforensic VISA ACQ INT 31121",
+    "target": "409000438611'",
+    "value": 1
+  },
+  {
+    "source": "Indiaforensic RUPAY POS ACQ31121",
+    "target": "409000438611'",
+    "value": 1
+  },
+  {
+    "source": "Indiaforensic VISA ACQ INT 30121",
+    "target": "409000438611'",
+    "value": 1
+  },
+  {
+    "source": "Indiaforensic VISA ACQ DOM311217",
+    "target": "409000438611'",
+    "value": 1
+  },
+  {
+    "source": "TRF TO  Indiaforensic SERVICES I",
+    "target": "409000438620'",
+    "value": 3
+  },
+  {
+    "source": "Indiaforensic AEPS NPCI DEP SET",
+    "target": "409000438620'",
+    "value": 2
+  },
+  {
+    "source": "Indiaforensic AEPS NPCI WDL SET",
+    "target": "409000438620'",
+    "value": 2
+  },
+  {
+    "source": "AEPS Indiaforensic GST 311217",
+    "target": "409000438620'",
+    "value": 1
+  },
+  {
+    "source": "AEPS Indiaforensic GST 301217",
+    "target": "409000438620'",
+    "value": 1
+  },
+  {
+    "source": "AEPS Indiaforensic INCOME 311217",
+    "target": "409000438620'",
+    "value": 1
+  },
+  {
+    "source": "AEPS Indiaforensic INCOME 301217",
+    "target": "409000438620'",
+    "value": 1
+  },
+  {
+    "source": "NEFT/N001180443481243/PAY",
+    "target": "1196711'",
+    "value": 1
+  },
+  {
+    "source": "1",
+    "target": "1196711'",
+    "value": 1
+  },
+  {
+    "source": "2",
+    "target": "1196711'",
+    "value": 1
+  },
+  {
+    "source": "3",
+    "target": "1196711'",
+    "value": 1
+  },
+  {
+    "source": "4",
+    "target": "1196711'",
+    "value": 1
+  },
+  {
+    "source": "5",
+    "target": "1196711'",
+    "value": 1
+  },
+  {
+    "source": "6",
+    "target": "1196711'",
+    "value": 1
+  },
+  {
+    "source": "FDRL/REAL TIME GROSS SETTL",
+    "target": "1196428'",
+    "value": 4
+  },
+  {
+    "source": "FDRL/INTERNAL FUND TRANSFE",
+    "target": "1196428'",
+    "value": 3
+  },
+  {
+    "source": "TRF FROM  Indiaforensic SERVICES",
+    "target": "1196428'",
+    "value": 2
+  },
+  {
+    "source": "TRF FRM  Indiaforensic SERVICES",
+    "target": "1196428'",
+    "value": 2
+  },
+  {
+    "source": "TRF TO  Indiaforensic SERVICES I",
+    "target": "1196428'",
+    "value": 1
+  },
+  {
+    "source": "NEFT/KKBK180018097135/Acc",
+    "target": "1196428'",
+    "value": 1
+  },
+  {
+    "source": "RTGS/HDFCH18001529703/PAY",
+    "target": "1196428'",
+    "value": 1
+  },
+  {
+    "source": "NEFT/N001180443425160/PAY",
+    "target": "1196428'",
+    "value": 1
+  },
+  {
+    "source": "RTGS/HDFCH18001529675/PAY",
+    "target": "1196428'",
+    "value": 1
+  },
+  {
+    "source": "CASHDEP/VIKASMARG/TP",
+    "target": "1196428'",
+    "value": 1
+  },
+  {
+    "source": "NEFT/N001180443425213/PAY",
+    "target": "1196428'",
+    "value": 1
+  },
+  {
+    "source": "NEFT/FDRL656260341/Indiaforensic",
+    "target": "1196428'",
+    "value": 1
+  },
+  {
+    "source": "FDRL/INTERNAL FUND TRANSFE",
+    "target": "409000362497'",
+    "value": 3
+  },
+  {
+    "source": "Sweep Trf To: 40900036427",
+    "target": "409000362497'",
+    "value": 1
+  },
+  {
+    "source": "IMPS 010118 4C",
+    "target": "409000362497'",
+    "value": 1
+  },
+  {
+    "source": "IMPS 311217 1C",
+    "target": "409000362497'",
+    "value": 1
+  },
+  {
+    "source": "IMPS 010118 2C",
+    "target": "409000362497'",
+    "value": 1
+  },
+  {
+    "source": "IMPS 3012171C",
+    "target": "409000362497'",
+    "value": 1
+  },
+  {
+    "source": "NEFT/SBIN918001464821/Indfor",
+    "target": "409000362497'",
+    "value": 1
+  },
+  {
+    "source": "IMPS 010118 3C",
+    "target": "409000362497'",
+    "value": 1
+  },
+  {
+    "source": "NEFT/AXIC180017700341/Indfor",
+    "target": "409000362497'",
+    "value": 1
+  },
+  {
+    "source": "INDO GIBL Indiaforensic STL31121",
+    "target": "A",
+    "value": 1
+  },
+  {
+    "source": "INDO GIBL Indiaforensic STL30121",
+    "target": "A",
+    "value": 1
+  },
+  {
+    "source": "INDO GIBL Indiaforensic STL31121",
+    "target": "B",
+    "value": 1
+  },
+  {
+    "source": "INDO GIBL Indiaforensic STL30121",
+    "target": "B",
+    "value": 1
+  }
+]
+}

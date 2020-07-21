@@ -51,7 +51,7 @@ circle.hidden {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.13.0/d3-legend.js"></script>
 <script>
 
-var width = 960,
+var width = 630,
     size = 230,
     padding = 20;
 
@@ -86,16 +86,16 @@ var color = d3.scaleOrdinal(d3.schemeCategory10);
 //           "translate(" + margin.left + "," + margin.top + ")");
 
 
-d3.csv("tous_les_clients.csv", function(error, data) {
+d3.csv("tous_les_clientsless.csv", function(error, data) {
   if (error) throw error;
-  data.forEach(function(d){ d['age'] = +d['age']; });
+  // data.forEach(function(d){ d['age'] = +d['age']; });
   data.forEach(function(d){ d['moyenne_du_solde'] = +d['moyenne_du_solde']; })
-  data.forEach(function(d){ d['max_solde'] = +d['max_solde']; });
+  // data.forEach(function(d){ d['max_solde'] = +d['max_solde']; });
   data.forEach(function(d){ d['max_retrait'] = +d['max_retrait']; });
-  data.forEach(function(d){ d['min_retrait'] = +d['min_retrait']; });
+  // data.forEach(function(d){ d['min_retrait'] = +d['min_retrait']; });
   data.forEach(function(d){ d['max_depot'] = +d['max_depot']; });
-  data.forEach(function(d){ d['min_depot'] = +d['min_depot']; });
-  data.forEach(function(d){ d['nombre_de_transactions'] = +d['nombre_de_transactions']; });
+  // data.forEach(function(d){ d['min_depot'] = +d['min_depot']; });
+  // data.forEach(function(d){ d['nombre_de_transactions'] = +d['nombre_de_transactions']; });
 
   var variables = data.columns;
   variables.forEach(function(d) {
@@ -127,13 +127,13 @@ d3.csv("tous_les_clients.csv", function(error, data) {
        .attr("width", size * n + padding + 150)
        .attr("height", size * n + padding + 150)
     .append("g")
-      .attr("transform", "translate(" + padding + "," + padding / 2 + ")");
+      .attr("transform", "translate(" +3* padding + "," + padding / 2 + ")");
 
 
     // legend
 
     const legendGroup = svg.append('g')
-        .attr('transform', `translate(${width+900}, 10)`);
+        .attr('transform', `translate(${width+100}, 10)`);
 
     const legend = d3.legendColor()
         .shape('circle')

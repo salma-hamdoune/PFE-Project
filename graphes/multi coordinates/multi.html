@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+svg {
+  font: 10px sans-serif;
+}
+
+.background path {
+  fill: none;
+  stroke: #ddd;
+  shape-rendering: crispEdges;
+}
+
+.foreground path {
+  fill: none;
+  stroke: steelblue;
+}
+
+.brush .extent {
+  fill-opacity: .3;
+  stroke: #fff;
+  shape-rendering: crispEdges;
+}
+
+.axis line,
+.axis path {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+  cursor: move;
+}
+
+
+
+.axis line,
+.axis path {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
+</style>
+<body>
+  <script src="//d3js.org/d3.v3.min.js"></script>
+
+  <!-- <script type="text/javascript" src="https://cvlassets.s3.amazonaws.com/d3.js"></script> -->
+
+  <script type="text/javascript" src="https://cvlassets.s3.amazonaws.com/crossfilter.js"></script>
+  <!-- <script type="text/javascript" src="dc.js"></script>  -->
+
+
+  <!-- <div class="tool radius">
+    <h5 class="text-uppercase">Client</h5>
+    <select class="form-control" id="clients"></select>
+</div> -->
+
+<!-- Initialize a select button -->
+<select id="selectButton"></select>
+
+<!-- Create a div where the graph will take place -->
+<!-- <div id="my_dataviz"></div> -->
+<div id="my_dataviz"></div>
+<!-- <script src="https://d3js.org/d3.v4.js"></script> -->
+
+<!-- <div id="my_dataviz2"></div> -->
+
+<script src="multi.js"></script>
+<!-- <script src="overall.js"></script> -->

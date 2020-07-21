@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+<script>
+
+    // set the dimensions and margins of the graph
+    var margin = {top: 30, right: 30, bottom: 30, left: 200},
+      width = 900 - margin.left - margin.right,
+      height = 1000 - margin.top - margin.bottom;
+    
+    // append the svg object to the body of the page
+    var svg = d3.select("#my_dataviz")
+    .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+    
+    
+    
+
+    // var myColor = d3.scaleLinear()
+    //   .range(["black", "#69b3a2"])
+    //   .domain([1,100])
+    
+    //Read the data
+    d3.csv("linksmo1day1trans.csv", function(data) { 
+        
+        // Build color scale
+      var myColor = d3.scaleSequential()
+       .interpolator(d3.interpolateInferno)
+      .domain([0,d3.max(data, function(d) { return +d.value})])
+    // Labels of row and columns
+    var myPlaces= d3.map(data, function(d){return d.place;}).keys()
+    var myClients = d3.map(data, function(d){return d.client;}).keys()
+    
+    // Build X scales and axis:
+    var x = d3.scaleBand()
+      .range([ 0, width ])
+      .domain(myClients)
+      .padding(0.01);
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x))
+    
+    // Build X scales and axis:
+    var y = d3.scaleBand()
+      .range([ height, 0 ])
+      .domain(myPlaces)
+      .padding(0.01);
+    svg.append("g")
+      .call(d3.axisLeft(y));
+      // create a tooltip
+      var tooltip = d3.select("#my_dataviz")
+        .append("div")
+        .style("opacity", 0)
+        .attr("class", "tooltip")
+        .style("background-color", "white")
+        .style("border", "solid")
+        .style("border-width", "2px")
+        .style("border-radius", "5px")
+        .style("padding", "5px")
+      // Three function that change the tooltip when user hover / move / leave a cell
+      // var mouseover = function(d) {
+      //   tooltip.style("opacity", 1)
+      // }
+      var mouseover = function(d) {
+    tooltip
+      .style("opacity", 1)
+    d3.select(this)
+      .style("stroke", "black")
+      .style("opacity", 1)
+  }
+  var mousemove = function(d) {
+    tooltip
+      .html("The exact value of<br>this cell is: " + d.value)
+      .style("left", (d3.mouse(this)[0]+70) + "px")
+      .style("top", (d3.mouse(this)[1]) + "px")
+  }
+  var mouseleave = function(d) {
+    tooltip
+      .style("opacity", 0)
+    d3.select(this)
+      .style("stroke", "none")
+      .style("opacity", 0.8)
+  }
+      // var mousemove = function(d) {
+      //   tooltip
+      //     .html("The exact value of<br>this cell is: " + d.value)
+      //     .style("left", (d3.mouse(this)[0]+70) + "px")
+      //     .style("top", (d3.mouse(this)[1]) + "px")
+      // }
+      // var mouseleave = function(d) {
+      //   tooltip.style("opacity", 0)
+      // }
+    
+      // add the squares
+      svg.selectAll()
+        .data(data, function(d) {return d.client+':'+d.place;})
+        .enter()
+        .append("rect")
+          .attr("x", function(d) { return x(d.client) })
+          .attr("y", function(d) { return y(d.place) })
+          .attr("width", x.bandwidth() )
+          .attr("height", y.bandwidth() )
+          .style("fill", function(d) { return myColor(d.value)} )
+        .on("mouseover", mouseover)
+        .on("mousemove", mousemove)
+        .on("mouseleave", mouseleave)
+
+        var gridSize = Math.floor(width / 24),
+           legendElementWidth = gridSize*2;
+
+
+        var legend = svg.selectAll(".legend")
+              .data([0].concat(color.scale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return "≥ " + Math.round(d); })
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height + gridSize);
+
+          legend.exit().remove();
+
+        
+    })
+    
+
+
+    
+    </script>
