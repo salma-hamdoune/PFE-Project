@@ -1,0 +1,15 @@
+<head>
+	<script src="//unpkg.com/timelines-chart@2"></script>
+	<script src="timeline.js"></script>
+</head>
+
+<body>
+	<div id="myPlot"></div>
+
+	<script>
+		TimelinesChart()
+			.data(getRandomData(true))
+			.zQualitative(true)
+			(document.getElementById('myPlot'));
+	</script>
+</body>

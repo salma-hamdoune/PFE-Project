@@ -62,7 +62,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("transactions_scores_1.0.csv", function(error, data) {
+d3.csv("transactions_scores_1.1.csv", function(error, data) {
 
   // Extract the list of dimensions and create a scale for each.
 //   x.domain(dimensions = d3.keys(data[0]).filter(function(d) {
@@ -71,9 +71,11 @@ d3.csv("transactions_scores_1.0.csv", function(error, data) {
 //         .range([height, 0]));
 //   }));
   data=data.filter(function(row){
-return row["Account_No"]==="B";
+return row["Account_No"]==="409000611074'";
 })
-
+data=data.filter(function(row){
+return row["month_df"]==="1";
+})
 // Extract the list of dimensions and create a scale for each.
 x.domain(dimensions = d3.keys(data[0]).filter(function(d) {
 return d != "Account_No"
