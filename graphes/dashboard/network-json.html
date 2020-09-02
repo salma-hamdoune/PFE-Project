@@ -1,0 +1,250 @@
+<!--https://bl.ocks.org/mbostock/2675ff61ea5e063ede2b5d63c08020c7-->
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Analyse des anomalies - Overview</title>
+
+	<!-- stylesheets -->
+	<link href="assets/fonts/font-roboto.css" rel="stylesheet">
+	<link href="assets/bootstrap/bootstrap4-alpha3.min.css" rel="stylesheet">
+	<link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="assets/web-analytics/style.css" rel="stylesheet">
+
+	<!-- scripts -->
+	<script src="assets/jquery/jquery-3.1.0.min.js"></script>
+	<script src="assets/tether/tether.min.js"></script>
+	<script src="assets/bootstrap/bootstrap4-alpha3.min.js"></script>
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<script src="assets/web-analytics/overview.js"></script>
+
+</head>
+
+<style>
+
+.links line {
+  stroke: #aaa;
+}
+
+.nodes circle {
+  pointer-events: all;
+  stroke: none;
+  stroke-width: 40px;
+}
+
+</style>
+<body>
+
+  <!-- header -->
+	<nav class="navbar navbar-fixed-top" id="header">
+    <link rel="stylesheet" href="styles.css">
+		<img class="img" src="img/logo.svg" alt="logo">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<div id="sidebar-toggle-button">
+					<i class="fa fa-bars" aria-hidden="true"></i>
+				</div>
+				<div class="brand">
+					<a href="accueil.html">
+						<span class="hidden-xs-down m-r-3">Analyses des anomalies </span><span class="lead">Network relationnel</span>
+					</a>
+				</div>
+
+			</div>
+		</div>
+	</nav>
+	<!-- /header -->
+
+	<!-- sidebar -->
+	<div class="sidebar-toggle" id="sidebar">
+		<ul class="nav nav-sidebar">
+			<li>
+				<a href="accueil.html" class="active">
+					<i class="fa fa-clock-o fa-lg fa-fw" aria-hidden="true"></i>
+					<span>Accueil</span>
+				</a>
+			</li>
+			<li role="separator" class="divider"></li>
+			<li>
+				<a href="sankey.html" class="active">
+					<i class="fa fa-newspaper-o fa-lg fa-fw" aria-hidden="true"></i>
+					<span>Data Checker</span>
+				</a>
+			</li>
+			<li role="separator" class="divider"></li>
+			<li>
+				<a href="network-json.html" class="active">
+					<i class="fa fa-newspaper-o fa-lg fa-fw" aria-hidden="true"></i>
+					<span>Network relationnel</span>
+				</a>
+			</li>
+			<li role="separator" class="divider"></li>
+			<li>
+				<a href="collapse2.html" class="active">
+					<i class="fa fa-newspaper-o fa-lg fa-fw" aria-hidden="true"></i>
+					<span>Network géographique</span>
+				</a>
+			</li>
+			<li role="separator" class="divider"></li>
+
+			<li>
+				<a href="multiline_manydatasets.html">
+					<i class="fa fa-newspaper-o fa-lg fa-fw" aria-hidden="true"></i>
+					<span>Profils à similarités tendancielles</span>
+				</a>
+			</li>
+			<li role="separator" class="divider"></li>
+
+			<li>
+				<a href="matrice_clients_physiques.html">
+					<i class="fa fa-newspaper-o fa-lg fa-fw" aria-hidden="true"></i>
+					<span>Matrice des agrégations</span>
+				</a>
+			</li>
+			<li role="separator" class="divider"></li>
+
+			<li>
+				<a href="chord.html">
+					<i class="fa fa-newspaper-o fa-lg fa-fw" aria-hidden="true"></i>
+					<span>Analyse spatio-temporelle des Cash-out par client</span>
+				</a>
+			</li>
+			<li role="separator" class="divider"></li>
+
+			<li>
+				<a href="multi_ts.html">
+					<i class="fa fa-newspaper-o fa-lg fa-fw" aria-hidden="true"></i>
+					<span>Scoring des transactions par client</span>
+				</a>
+			</li>
+			<li role="separator" class="divider"></li>
+
+			<li>
+				<a href="dc.html">
+					<i class="fa fa-newspaper-o fa-lg fa-fw" aria-hidden="true"></i>
+					<span>Dashboard Client</span>
+				</a>
+			</li>
+			
+			<li role="separator" class="divider"></li>
+		</ul>
+	</div>
+	<!-- /sidebar -->
+<script>
+//  <svg width="1400" height="600"></svg>
+</script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.13.0/d3-legend.js"></script>
+
+<script>
+
+
+var width = 1400,
+    height = 600,
+    padding = 20;
+
+var svg = d3.select("body").append("svg")
+       .attr("width", width + 150)
+       .attr("height", height + 150)
+    .append("g")
+      .attr("transform", "translate(" + padding + "," + padding / 2 + ")");
+
+
+// var svg = d3.select("svg"),
+//     width = +svg.attr("width"),
+//     height = +svg.attr("height");
+
+
+
+var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d) { return d.id; }))
+    .force("charge", d3.forceManyBody().strength(-1))
+    // .force("collide", d3.forceCollide())
+    .force("center", d3.forceCenter(width /2, height/2 ));
+
+d3.json("data network/nodesmo1day1.json", function(error, graph) {
+  if (error) throw error;
+
+  var link = svg.append("g")
+      .attr("class", "links")
+    .selectAll("line")
+    .data(graph.links)
+    .enter().append("line")
+    // .join("line")
+      .attr("stroke-width", d => Math.sqrt(d.value));;
+// const color = d3.scaleOrdinal(d3['schemeSet3'])
+var color = d3.scaleOrdinal(d3.schemeCategory10)
+  var node = svg.append("g")
+      .attr("class", "nodes")
+    .selectAll("circle")
+    .data(graph.nodes)
+    .enter().append("circle")
+    // .attr("fill", color(d => d.group))
+      .style("fill", function(d) { return color(d.group); })
+      .attr("r", 3)
+      .call(d3.drag()
+          .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended));
+
+// legend
+
+const legendGroup = svg.append('g')
+    .attr('transform', `translate(${width + 220}, 10)`);
+
+const legend = d3.legendColor()
+    .shape('circle')
+    .shapePadding(30)
+    .scale(color);
+// update and call legend
+legendGroup.call(legend);
+  legendGroup.selectAll('text').attr('fill','black');
+
+
+  node.append("title")
+      .text(function(d) { return d.id; });
+
+  simulation
+      .nodes(graph.nodes)
+      .on("tick", ticked);
+
+  simulation.force("link")
+      .links(graph.links);
+
+  function ticked() {
+    link
+        .attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    node
+        .attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+  }
+  //  svg.selectAll("g").attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+});
+
+function dragstarted(d) {
+  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+  d.fx = d.x;
+  d.fy = d.y;
+}
+
+function dragged(d) {
+  d.fx = d3.event.x;
+  d.fy = d3.event.y;
+}
+
+function dragended(d) {
+  if (!d3.event.active) simulation.alphaTarget(0);
+  d.fx = null;
+  d.fy = null;
+}
+
+</script>

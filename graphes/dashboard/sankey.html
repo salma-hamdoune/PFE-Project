@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Data Checker </title>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<!-- stylesheets -->
+	<link href="assets/fonts/font-roboto.css" rel="stylesheet">
+	<link href="assets/bootstrap/bootstrap4-alpha3.min.css" rel="stylesheet">
+	<link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="assets/web-analytics/style.css" rel="stylesheet">
+
+	<!-- scripts -->
+	<script src="assets/jquery/jquery-3.1.0.min.js"></script>
+	<script src="assets/tether/tether.min.js"></script>
+	<script src="assets/bootstrap/bootstrap4-alpha3.min.js"></script>
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<script src="assets/web-analytics/overview.js"></script>
+
+</head>
+
+<body>
+	<!-- header -->
+	<nav class="navbar navbar-fixed-top" id="header">
+		<link rel="stylesheet" href="styles.css">
+		<img class="img" src="img/logo.svg" alt="logo">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<div id="sidebar-toggle-button">
+					<i class="fa fa-bars" aria-hidden="true"></i>
+				</div>
+				<div class="brand">
+					<a href="accueil.html">
+						<span class="hidden-xs-down m-r-3">Analyses des anomalies </span><span class="lead">Data Checker</span>
+					</a>
+				</div>
+
+			</div>
+		</div>
+	</nav>
+	<!-- /header -->
+
+<!-- sidebar -->
+<div class="sidebar-toggle" id="sidebar">
+	<ul class="nav nav-sidebar">
+		<li>
+			<a href="accueil.html" class="active">
+				<i class="fa fa-clock-o fa-lg fa-fw" aria-hidden="true"></i>
+				<span>Accueil</span>
+			</a>
+		</li>
+		<li role="separator" class="divider"></li>
+		<li>
+			<a href="sankey.html" class="active">
+				<i class="fa fa-newspaper-o fa-lg fa-fw" aria-hidden="true"></i>
+				<span>Data Checker</span>
+			</a>
+		</li>
+		<li role="separator" class="divider"></li>
+		<li>
+			<a href="network-json.html" class="active">
+				<i class="fa fa-newspaper-o fa-lg fa-fw" aria-hidden="true"></i>
+				<span>Network relationnel</span>
+			</a>
+		</li>
+		<li role="separator" class="divider"></li>
+		<li>
+			<a href="collapse2.html" class="active">
+				<i class="fa fa-newspaper-o fa-lg fa-fw" aria-hidden="true"></i>
+				<span>Network géographique</span>
+			</a>
+		</li>
+		<li role="separator" class="divider"></li>
+
+		<li>
+			<a href="multiline_manydatasets.html">
+				<i class="fa fa-newspaper-o fa-lg fa-fw" aria-hidden="true"></i>
+				<span>Profils à similarités tendancielles</span>
+			</a>
+		</li>
+		<li role="separator" class="divider"></li>
+
+		<li>
+			<a href="matrice_clients_physiques.html">
+				<i class="fa fa-newspaper-o fa-lg fa-fw" aria-hidden="true"></i>
+				<span>Matrice des agrégations</span>
+			</a>
+		</li>
+		<li role="separator" class="divider"></li>
+
+		<li>
+			<a href="chord.html">
+				<i class="fa fa-newspaper-o fa-lg fa-fw" aria-hidden="true"></i>
+				<span>Analyse spatio-temporelle des Cash-out par client</span>
+			</a>
+		</li>
+		<li role="separator" class="divider"></li>
+
+		<li>
+			<a href="multi_ts.html">
+				<i class="fa fa-newspaper-o fa-lg fa-fw" aria-hidden="true"></i>
+				<span>Scoring des transactions par client</span>
+			</a>
+		</li>
+		<li role="separator" class="divider"></li>
+
+		<li>
+			<a href="dc.html">
+				<i class="fa fa-newspaper-o fa-lg fa-fw" aria-hidden="true"></i>
+				<span>Dashboard Client</span>
+			</a>
+		</li>
+		
+		<li role="separator" class="divider"></li>
+	</ul>
+</div>
+<!-- /sidebar -->
+
+<style>
+ 
+.node rect {
+  cursor: move;
+  fill-opacity: .9;
+  shape-rendering: crispEdges;
+}
+ 
+.node text {
+  pointer-events: none;
+  text-shadow: 0 1px 0 #fff;
+}
+ 
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+ 
+.link:hover {
+  stroke-opacity: .5;
+}
+ 
+</style>
+<body>
+ 
+<p id="chart">
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+<script src="sankeyAssets/sankey.js"></script>
+<script>
+  
+var units = "client(s)";
+ 
+var margin = {top: 10, right: 10, bottom: 10, left: 10},
+    width = 1200 - margin.left - margin.right,
+    height = 740 - margin.top - margin.bottom;
+ 
+var formatNumber = d3.format(",.0f"),    // zero decimal places
+    format = function(d) { return formatNumber(d) + " " + units; },
+    color = d3.scale.category20();
+ 
+// append the svg canvas to the page
+var svg = d3.select("#chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", 
+          "translate(" + margin.left + "," + margin.top + ")");
+ 
+// Set the sankey diagram properties
+var sankey = d3.sankey()
+    .nodeWidth(36)
+    .nodePadding(10)
+    .size([width, height]);
+ 
+var path = sankey.link();
+ 
+// load the data
+d3.json("data sankey/age-statut.json", function(error, graph) {
+ 
+    var nodeMap = {};
+    graph.nodes.forEach(function(x) { nodeMap[x.id] = x; });
+    graph.links = graph.links.map(function(x) {
+      return {
+        source: nodeMap[x.source],
+        target: nodeMap[x.target],
+        value: x.value
+      };
+    });
+ 
+  sankey
+      .nodes(graph.nodes)
+      .links(graph.links)
+      .layout(32);
+ 
+// add in the links
+  var link = svg.append("g").selectAll(".link")
+      .data(graph.links)
+    .enter().append("path")
+      .attr("class", "link")
+      .attr("d", path)
+      .style("stroke-width", function(d) { return Math.max(1, d.dy); })
+      .sort(function(a, b) { return b.dy - a.dy; });
+ 
+// add the link titles
+  link.append("title")
+        .text(function(d) {
+      	return d.source.id + " → " + 
+                d.target.id + "\n" + format(d.value); });
+ 
+// add in the nodes
+  var node = svg.append("g").selectAll(".node")
+      .data(graph.nodes)
+    .enter().append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) { 
+		  return "translate(" + d.x + "," + d.y + ")"; })
+    .call(d3.behavior.drag()
+      .origin(function(d) { return d; })
+      .on("dragstart", function() { 
+		  this.parentNode.appendChild(this); })
+      .on("drag", dragmove));
+ 
+// add the rectangles for the nodes
+  node.append("rect")
+      .attr("height", function(d) { return d.dy; })
+      .attr("width", sankey.nodeWidth())
+      .style("fill", function(d) { 
+		  return d.color = color(d.id.replace(/ .*/, "")); })
+      .style("stroke", function(d) { 
+		  return d3.rgb(d.color).darker(2); })
+    .append("title")
+      .text(function(d) { 
+		  return d.id + "\n" + format(d.value); });
+ 
+// add in the title for the nodes
+  node.append("text")
+      .attr("x", -6)
+      .attr("y", function(d) { return d.dy / 2; })
+      .attr("dy", ".35em")
+      .attr("text-anchor", "end")
+      .attr("transform", null)
+      .text(function(d) { return d.id; })
+    .filter(function(d) { return d.x < width / 2; })
+      .attr("x", 6 + sankey.nodeWidth())
+      .attr("text-anchor", "start");
+ 
+// the function for moving the nodes
+  function dragmove(d) {
+    d3.select(this).attr("transform", 
+        "translate(" + (
+        	   d.x = Math.max(0, Math.min(width - d.dx, d3.event.x))
+        	) + "," + (
+                   d.y = Math.max(0, Math.min(height - d.dy, d3.event.y))
+            ) + ")");
+    sankey.relayout();
+    link.attr("d", path);
+  }
+});
+ 
+</script>
+ 			<!-- 1st row -->
+			 <div id="revenue-spline-area-chart"></div>
+			 <!-- /1st row -->
+			 <!-- 2nd row -->
+		 <div id="annual-revenue-by-category-pie-chart"></div>
+		 <div id="monthly-revenue-by-category-column-chart"></div>
+			 <!-- /2nd row -->
+			 <!-- 3rd row -->
+		 <div id="visitors-chart"></div>
+		 <div id="users-spline-chart"></div>
+ >			<!-- /3rd row -->
+</body>
+</html>

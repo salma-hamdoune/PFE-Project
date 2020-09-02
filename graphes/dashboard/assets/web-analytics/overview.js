@@ -228,7 +228,7 @@ $(function () {
 		]
 	});
 	
-	revenueSplineAreaChart.render();
+	// revenueSplineAreaChart.render();
 	
 	// CanvasJS pie chart to show annual revenue by category
 	var annualRevenueByCategoryPieChart = new CanvasJS.Chart("annual-revenue-by-category-pie-chart", {
@@ -302,7 +302,7 @@ $(function () {
 	});
 
 	populateMonthlyRevenueByCategoryChart();
-	monthlyRevenueByCategoryColumnChart.render();
+	// monthlyRevenueByCategoryColumnChart.render();
 
 	var visitorsDrilldownedChartOptions = {
 		animationEnabled: true,
@@ -350,7 +350,7 @@ $(function () {
 	var visitorsChart = new CanvasJS.Chart("visitors-chart", newVsReturningVisitorsChartOptions);
 	visitorsChart.options.data = dataVisitors["New vs Returning Visitors"];
 	
-	visitorsChart.render();
+	// visitorsChart.render();
 
 	// CanvasJS spline chart to show users from Jan 2015 - Dec 2015
 	var usersSplineChart = new CanvasJS.Chart("users-spline-chart", {
@@ -397,7 +397,7 @@ $(function () {
 		]
 	});
 	
-	usersSplineChart.render();	
+	// usersSplineChart.render();	
 	
 	//----------------------------------------------------------------------------------//
 	var allCharts = [
@@ -424,7 +424,7 @@ $(function () {
 		if (monthlyRevenueByCategoryColumnChart.options.data.length === 0)
 			populateMonthlyRevenueByCategoryChart();
 
-		monthlyRevenueByCategoryColumnChart.render();
+		// monthlyRevenueByCategoryColumnChart.render();
 	}
 	
 	var visitorsChartHeadingDOM = $("#visitors-chart-heading"),
@@ -434,7 +434,7 @@ $(function () {
 	function visitorsChartDrilldownHandler (e) {
 		visitorsChart = new CanvasJS.Chart("visitors-chart", visitorsDrilldownedChartOptions);
 		visitorsChart.options.data = dataVisitors[e.dataPoint.name];
-		visitorsChart.render();
+		// visitorsChart.render();
 		
 		// DOM Manipulations
 		visitorsChartHeadingDOM.html(e.dataPoint.name);
@@ -446,7 +446,7 @@ $(function () {
 	visitorsChartBackButtonDOM.on("click", function () {
 		visitorsChart = new CanvasJS.Chart("visitors-chart", newVsReturningVisitorsChartOptions);
 		visitorsChart.options.data = dataVisitors["New vs Returning Visitors"];
-		visitorsChart.render();
+		// visitorsChart.render();
 		
 		// DOM Manipulations
 		visitorsChartHeadingDOM.html("New vs Returning Visitors");
@@ -460,7 +460,7 @@ $(function () {
 			
 			annualRevenueByCategoryPieChart.options.legend.horizontalAlign = "left";
 			annualRevenueByCategoryPieChart.options.legend.verticalAlign = "center";
-			annualRevenueByCategoryPieChart.render();
+			// annualRevenueByCategoryPieChart.render();
 			
 			visitorsChartTagDOM.css("position", "absolute");
 			
@@ -468,23 +468,23 @@ $(function () {
 			
 			annualRevenueByCategoryPieChart.options.legend.horizontalAlign = "center";
 			annualRevenueByCategoryPieChart.options.legend.verticalAlign = "top";
-			annualRevenueByCategoryPieChart.render();
+			// annualRevenueByCategoryPieChart.render();
 			
 			visitorsChartTagDOM.css("position", "static");
 			
 		}
 	}
 	
-	function renderAllCharts() {
-		for (var i = 0; i < allCharts.length; i++)
-			allCharts[i].render();
-	}
+	// function renderAllCharts() {
+	// 	for (var i = 0; i < allCharts.length; i++)
+	// 		allCharts[i].render();
+	// }
 	
 	function sidebarToggleOnClick() {
 		$('#sidebar-toggle-button').on('click', function () {
 			$('#sidebar').toggleClass('sidebar-toggle');
 			$('#page-content-wrapper').toggleClass('page-content-toggle');
-			renderAllCharts();
+			// renderAllCharts();
 		});	
 	}
 	
