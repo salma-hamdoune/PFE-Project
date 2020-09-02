@@ -3,7 +3,7 @@ $(function() {
 	var countryColor = {"Argentina" : "#6dbceb", "Brazil" : "#c8b631", "Canada" : "#369ead", "China" : "#a2d1cf", "Germany" : "#f79647", "India" : "#7f6084", "Japan" : "#4f81bc",
 											"Malawi" : "#369ead", "Nigeria" : "#86b402", "South Korea" : "#52514e", "United Kingdom" : "#a064a1", "United States" : "#c24642", "Zimbabwe" : "#c24642"};
 	var countryCode = {"India":"IN","China":"CN","United States":"US"};
-	var yearSlider = document.getElementById('year-slider');
+	var yearSlider = document.getElementById("year-slider");
 	var orderedDataPoints = JSON.parse(JSON.stringify(getDataPoint(yearArr[0])));
 	var GDPPerCapitaBubbleChart;
 	var merchandiseImportsExportsColumnChart;
@@ -12,9 +12,9 @@ $(function() {
 	var animationIteration = 0;
 	var pauseAnimation = true;
 	var numberOfTransitions = 5;
-	$('#startGraphAnimation').click(function () {
-		$('#pauseGraphAnimation').show();
-		$('#startGraphAnimation').hide();
+	$("#startGraphAnimation").click(function () {
+		$("#pauseGraphAnimation").show();
+		$("#startGraphAnimation").hide();
 		var dynamicDataPoints = [];
 		yearCounter++;
 		if (yearCounter >= yearArr.length) {
@@ -36,8 +36,8 @@ $(function() {
 					orderedDataPoints = getDataPoint(yearArr[0]);
 					clearInterval(animationInterval);
 					pauseAnimation = true;
-					$('#startGraphAnimation').show();
-					$('#pauseGraphAnimation').hide();
+					$("#startGraphAnimation").show();
+					$("#pauseGraphAnimation").hide();
 				}
 				if (pauseAnimation === true) {
 					if (yearCounter !== yearArr.length - 1) {
@@ -83,9 +83,9 @@ $(function() {
 	});
 
 //pause the bubble chart animation and display the play button
-	$('#pauseGraphAnimation').click(function () {
-		$('#startGraphAnimation').show();
-		$('#pauseGraphAnimation').hide();
+	$("#pauseGraphAnimation").click(function () {
+		$("#startGraphAnimation").show();
+		$("#pauseGraphAnimation").hide();
 		pauseAnimation=true;
 	});
 
@@ -111,7 +111,7 @@ $(function() {
 			{
 				backgroundColor: "transparent",
 				axisX: {
-					labelFontWeight: 'lighter',
+					labelFontWeight: "lighter",
 					lineThickness: 1,
 					logarithmic: true,
 					minimum: 10,
@@ -124,7 +124,7 @@ $(function() {
 				},
 				axisY: {
 					gridThickness: 1,
-					labelFontWeight: 'lighter',
+					labelFontWeight: "lighter",
 					lineThickness: 1,
 					minimum: 30,
 					maximum: 100,
@@ -172,22 +172,22 @@ $(function() {
 
 //On click of the bubble in the bubble chart it scrolls down to the chart of population, working population, and Merchandise import and export chart 
 	function showChartForSelectedCountry(e) {
-		$('div #selected-country').each(function(){
-			$(this).html(' - '+e.dataPoint.name);
+		$("div #selected-country").each(function(){
+			$(this).html(" - "+e.dataPoint.name);
 		});
 		createPopulationChart(e.dataPoint.name);
 		createWorkingPopulationChart(e.dataPoint.name);
 		merchandiseImportsExportsColumnChart = createMerchandiseImportsExportsChart(e.dataPoint.name);
 		setMerchandiseImportsExportsColumnChartAxisYTitleFontSize();
-		$('html,body').animate({scrollTop: $("#population-charts").offset().top},400);
+		$("html,body").animate({scrollTop: $("#population-charts").offset().top},400);
 	}
 
 //Set the subtitle of the bubble chart to display the year during the animation of the chart
 	function setBubbleChartSubtitlesFontSize() {
-		if ($('#GDP-per-capita-bubble-chart').height() === 400) {
+		if ($("#GDP-per-capita-bubble-chart").height() === 400) {
 			GDPPerCapitaBubbleChart.options.subtitles[0].fontSize = 113;
 		}
-		if ($('#GDP-per-capita-bubble-chart').height() === 300) {
+		if ($("#GDP-per-capita-bubble-chart").height() === 300) {
 			GDPPerCapitaBubbleChart.options.subtitles[0].fontSize = 60;
 		}
 		GDPPerCapitaBubbleChart.render();
@@ -201,11 +201,11 @@ $(function() {
 			step: 1,
 			animate: false,
 			range: {
-				'min': yearArr[0],
-				'max': yearArr[yearArr.length-1]
+				"min": yearArr[0],
+				"max": yearArr[yearArr.length-1]
 			},
 			pips: {
-				mode: 'values',
+				mode: "values",
 				stepped: true,
 				values: getYearArrForSlider(),
 				density: 2
@@ -255,16 +255,16 @@ $(function() {
 	$(".noUi-value").click( function() {
 		yearSlider.noUiSlider.updateOptions({
 			range: {
-				'min': yearArr[0],
-				'max': yearArr[yearArr.length-1]
+				"min": yearArr[0],
+				"max": yearArr[yearArr.length-1]
 			},
 			animate: true
 		});
 		yearSlider.noUiSlider.set($(this).html());
 		yearSlider.noUiSlider.updateOptions({
 			range: {
-				'min': yearArr[0],
-				'max': yearArr[yearArr.length-1]
+				"min": yearArr[0],
+				"max": yearArr[yearArr.length-1]
 			},
 			animate: false
 		});
@@ -273,18 +273,18 @@ $(function() {
 
 //Bind slider update event 				
 	function bindYearSliderUpdateEvent() {
-		yearSlider.noUiSlider.on('update', function (values, handle) {
+		yearSlider.noUiSlider.on("update", function (values, handle) {
 			$(".noUi-value").each( function () {
 				if (parseInt($(this).html()) === parseInt(values[handle])) {
-					$(this).addClass('noUi-value-large');
-					$(this).removeClass('noUi-value-sub');
-					$(this).prev().addClass('noUi-marker-large');
-					$(this).prev().removeClass('noUi-marker-sub');
+					$(this).addClass("noUi-value-large");
+					$(this).removeClass("noUi-value-sub");
+					$(this).prev().addClass("noUi-marker-large");
+					$(this).prev().removeClass("noUi-marker-sub");
 				} else {
-					$(this).addClass('noUi-value-sub');
-					$(this).removeClass('noUi-value-large');
-					$(this).prev().addClass('noUi-marker-sub');
-					$(this).prev().removeClass('noUi-marker-large');
+					$(this).addClass("noUi-value-sub");
+					$(this).removeClass("noUi-value-large");
+					$(this).prev().addClass("noUi-marker-sub");
+					$(this).prev().removeClass("noUi-marker-large");
 				}
 			});
 			yearCounter = yearArr.indexOf(parseInt(values[handle]));
@@ -306,7 +306,7 @@ $(function() {
 			animationEnabled: true,
 			backgroundColor: "transparent",
 			axisX: {
-				labelFontWeight: 'lighter',
+				labelFontWeight: "lighter",
 				lineThickness: 1,
 				tickThickness: 1,
 				valueFormatString: "####",
@@ -316,7 +316,7 @@ $(function() {
 			axisY: {
 				gridThickness: 1,
 				includeZero: false,
-				labelFontWeight: 'lighter',
+				labelFontWeight: "lighter",
 				lineThickness: 1,
 				labelFormatter: addSymbols,
 				tickThickness: 1,
@@ -351,7 +351,7 @@ $(function() {
 			animationEnabled: true,
 			backgroundColor: "transparent",
 			axisX: {
-				labelFontWeight: 'lighter',
+				labelFontWeight: "lighter",
 				lineThickness: 1,
 				tickThickness: 1,
 				valueFormatString: "####",
@@ -361,7 +361,7 @@ $(function() {
 			axisY: {
 				gridThickness: 1,
 				includeZero: false,
-				labelFontWeight: 'lighter',
+				labelFontWeight: "lighter",
 				lineThickness: 1,
 				suffix: "%",
 				tickThickness: 1,
@@ -381,7 +381,7 @@ $(function() {
 				name: "Working Age Population",
 				type: "splineArea",
 				xValueFormatString: "####",
-				yValueFormatString: "##.##'%'",
+				yValueFormatString: "##.##"%"",
 				dataPoints: workingPopulationDataPoints
 			}
 			]
@@ -404,7 +404,7 @@ $(function() {
 			animationEnabled: true,
 			backgroundColor: "transparent",
 			axisX: {
-				labelFontWeight: 'lighter',
+				labelFontWeight: "lighter",
 				lineThickness: 1,
 				tickThickness: 1,
 				valueFormatString: "####",
@@ -412,7 +412,7 @@ $(function() {
 			axisY: {
 				gridThickness: 1,
 				includeZero: false,
-				labelFontWeight: 'lighter',
+				labelFontWeight: "lighter",
 				labelFormatter: addSymbols,
 				lineThickness: 1,
 				tickThickness: 1,
@@ -460,13 +460,13 @@ $(function() {
 	}
 
 	function setMerchandiseImportsExportsColumnChartAxisYTitleFontSize() {
-		if ($('#merchandise-imports-exports-column-chart').height() === 500) {
+		if ($("#merchandise-imports-exports-column-chart").height() === 500) {
 			merchandiseImportsExportsColumnChart.options.axisY.titleFontSize = 30;
 		}
-		if ($('#merchandise-imports-exports-column-chart').height() === 400) {
+		if ($("#merchandise-imports-exports-column-chart").height() === 400) {
 			merchandiseImportsExportsColumnChart.options.axisY.titleFontSize = 25;
 		}
-		if ($('#merchandise-imports-exports-column-chart').height() === 300) {
+		if ($("#merchandise-imports-exports-column-chart").height() === 300) {
 			merchandiseImportsExportsColumnChart.options.axisY.titleFontSize = 16;
 		}
 		merchandiseImportsExportsColumnChart.render();
@@ -490,11 +490,11 @@ $(function() {
 			if (e.chart.options.data[1].visible === false) {
 				e.chart.options.axisY.title = e.chart.options.data[0].name;
 			} else {
-				e.chart.options.axisY.title = 'Merchandise Imports & Exports';
+				e.chart.options.axisY.title = "Merchandise Imports & Exports";
 			}
 		} else {
 			if (e.chart.options.data[1].visible === false) {
-				e.chart.options.axisY.title = '';
+				e.chart.options.axisY.title = "";
 			} else {
 				e.chart.options.axisY.title = e.chart.options.data[1].name;
 			}
@@ -503,7 +503,7 @@ $(function() {
 
 	function populationChartTooltipContent(e) {
 		var content;
-		content = "<strong>" + e.entries[0].dataPoint.x + "</strong> <br/>" + e.chart.options.data[0].name + ': ' + formatTooltipNumber(e.entries[0].dataPoint.y);
+		content = "<strong>" + e.entries[0].dataPoint.x + "</strong> <br/>" + e.chart.options.data[0].name + ": " + formatTooltipNumber(e.entries[0].dataPoint.y);
 		return content;
 	}
 
@@ -511,16 +511,16 @@ $(function() {
 		var content;
 		if (e.chart.options.data[0].visible === true) {
 			if (e.chart.options.data[1].visible === false) {
-				content = "<strong>" + e.entries[0].dataPoint.x + "</strong> <br/>" + "<span style= 'color:" + e.entries[0].dataSeries.color + "'> " +  "Merchandise Imports:</span> US $" + formatTooltipNumber(e.entries[0].dataPoint.y);
+				content = "<strong>" + e.entries[0].dataPoint.x + "</strong> <br/>" + "<span style= "color:" + e.entries[0].dataSeries.color + ""> " +  "Merchandise Imports:</span> US $" + formatTooltipNumber(e.entries[0].dataPoint.y);
 			} else {
-				content = "<strong>" + e.entries[0].dataPoint.x + "</strong> <br/>" + "<span style= 'color:" + e.entries[0].dataSeries.color + "'> " +  "Merchandise Imports:</span> US $" + formatTooltipNumber(e.entries[0].dataPoint.y)
-				+ "<br/><span style= 'color:" + e.entries[1].dataSeries.color + "'> " + "Merchandise Exports:</span> US $"+ formatTooltipNumber(e.entries[1].dataPoint.y);
+				content = "<strong>" + e.entries[0].dataPoint.x + "</strong> <br/>" + "<span style= "color:" + e.entries[0].dataSeries.color + ""> " +  "Merchandise Imports:</span> US $" + formatTooltipNumber(e.entries[0].dataPoint.y)
+				+ "<br/><span style= "color:" + e.entries[1].dataSeries.color + ""> " + "Merchandise Exports:</span> US $"+ formatTooltipNumber(e.entries[1].dataPoint.y);
 			}
 		} else {
 			if (e.chart.options.data[1].visible === false) {
-				content = '';
+				content = "";
 			} else {
-				content = "<strong>" + e.entries[0].dataPoint.x + "</strong>" + "<br/><span style= 'color:" + e.entries[1].dataSeries.color + "'> "+ "Merchandise Exports:</span> US $" + formatTooltipNumber(e.entries[1].dataPoint.y);
+				content = "<strong>" + e.entries[0].dataPoint.x + "</strong>" + "<br/><span style= "color:" + e.entries[1].dataSeries.color + ""> "+ "Merchandise Exports:</span> US $" + formatTooltipNumber(e.entries[1].dataPoint.y);
 			}
 		}
 		return content;
@@ -532,7 +532,7 @@ $(function() {
 		if (order > suffixes.length - 1)                	
 			order = suffixes.length - 1;
 		var suffix = suffixes[order];
-		return CanvasJS.formatNumber(number / Math.pow(1000, order)) + ' ' + suffix;
+		return CanvasJS.formatNumber(number / Math.pow(1000, order)) + " " + suffix;
 	}
 
 	$(window).resize(function() {

@@ -11,11 +11,11 @@ blockquote p {
 }
 .author {
     color: #8793A4;
-    font-family: 'Bookman Old Style', serif;
+    font-family: "Bookman Old Style", serif;
     font-size: 20px;
 }
 .author::before {
-        content: '\2014 \00A0';
+        content: "\2014 \00A0";
 }
 .header {
     padding-top: 15px;
@@ -129,7 +129,7 @@ blockquote p {
 @media (min-width: 1020px) {
     .author {
         color: #8793A4;
-        font-family: 'Bookman Old Style', serif;
+        font-family: "Bookman Old Style", serif;
         font-size: 20px;
         margin-left: 786px;
     }
@@ -146,7 +146,7 @@ blockquote p {
 @media (min-width: 861px) and (max-width: 1018px) {
     .author {
         color: #8793A4;
-        font-family: 'Bookman Old Style', serif;
+        font-family: "Bookman Old Style", serif;
         font-size: 18px;
         margin-left: 80%;
     }
@@ -154,7 +154,7 @@ blockquote p {
 @media (min-width: 547px) and (max-width: 880px) {
     .author {
         color: #8793A4;
-        font-family: 'Bookman Old Style', serif;
+        font-family: "Bookman Old Style", serif;
         font-size: 18px;
         margin-left: 70%;
     }
@@ -162,7 +162,7 @@ blockquote p {
 @media (min-width: 359px) and (max-width: 547px) {
     .author {
         color: #8793A4;
-        font-family: 'Bookman Old Style', serif;
+        font-family: "Bookman Old Style", serif;
         font-size: 18px;
         margin-left: 50%;
     }
@@ -170,7 +170,7 @@ blockquote p {
 @media (max-width: 359px) {
     .author {
         color: #8793A4;
-        font-family: 'Bookman Old Style', serif;
+        font-family: "Bookman Old Style", serif;
         font-size: 18px;
         margin-left: 30%;
     }

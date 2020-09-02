@@ -54,7 +54,7 @@ body {
 
 <script>
 
-d3.csv("cluster_data4.csv").then(d => chart(d))
+d3.csv("cluster_data0.csv").then(d => chart(d))
 
 function chart(data) {
 
@@ -120,7 +120,7 @@ function chart(data) {
 		.attr("width", width - margin.right - margin.left)
 		.attr("height", height)
 
-	update(d3.select('#selectbox').property('value'), 0);
+	update(d3.select("#selectbox").property("value"), 0);
 
 	function update(input, speed) {
 

@@ -1,0 +1,214 @@
+
+{"name": "tous",
+"children" :[{"name": "salariés1",
+    "children":[
+
+    {
+    "name": "client 1",
+    "children": [
+
+         {"name": "Agence 1", "size": 3938, 
+         "children":[{"name": 500,"size0": 500}]},
+         {"name": "Agence 2", "size": 3812,
+            "children":[{"name": 20000, "size0": 200}]},
+         {"name": "Agence 3", "size": 6714,
+            "children":[{"name": 4000, "size0": 1000}]},
+         {"name": "Agence 4", "size": 743,
+            "children":[{"name": 2000, "size0": 1000}]}
+      ]
+   },{
+      "name": "client 2",
+      "children": [
+  
+           {"name": "Agence 1", "size": 3938, 
+           "children":[{"name": 500,"size0": 500}]},
+           {"name": "Agence 2", "size": 3812,
+              "children":[{"name": 20000, "size0": 100}]},
+           {"name": "Agence 3", "size": 6714,
+              "children":[{"name": 4000, "size0": 1500}]},
+           {"name": "Agence 4", "size": 743,
+              "children":[{"name": 2000, "size0": 2000}]}
+        ]
+     },{
+      "name": "client 3",
+      "children": [
+  
+           {"name": "Agence 1", "size": 3938, 
+           "children":[{"name": 500,"size0": 500}]},
+           {"name": "Agence 2", "size": 3812,
+              "children":[{"name": 20000, "size0": 2000}]},
+           {"name": "Agence 3", "size": 6714,
+              "children":[{"name": 4000, "size0": 250}]},
+           {"name": "Agence 4", "size": 743,
+              "children":[{"name": 2000, "size0": 1000}]}
+        ]
+     },{
+      "name": "client 4",
+      "children": [
+  
+           {"name": "Agence 1", "size": 3938, 
+           "children":[{"name": 500,"size0": 500}]},
+           {"name": "Agence 2", "size": 3812,
+              "children":[{"name": 20000, "size0": 2000}]},
+           {"name": "Agence 3", "size": 6714,
+              "children":[{"name": 4000, "size0": 4000}]},
+           {"name": "Agence 4", "size": 743,
+              "children":[{"name": 2000, "size0": 2000}]}
+        ]
+     },{
+      "name": "client 5",
+      "children": [
+  
+           {"name": "Agence 1", "size": 3938, 
+           "children":[{"name": 500,"size0": 500}]},
+           {"name": "Agence 2", "size": 3812,
+              "children":[{"name": 20000, "size0": 2000}]},
+           {"name": "Agence 3", "size": 6714,
+              "children":[{"name": 4000, "size0": 4000}]},
+           {"name": "Agence 4", "size": 743,
+              "children":[{"name": 2000, "size0": 2000}]}
+        ]
+     },{
+      "name": "client 6",
+      "children": [
+  
+           {"name": "Agence 1", "size": 3938, 
+           "children":[{"name": 500,"size0": 500}]},
+           {"name": "Agence 2", "size": 3812,
+              "children":[{"name": 20000, "size0": 2000}]},
+           {"name": "Agence 3", "size": 6714,
+              "children":[{"name": 4000, "size0": 4000}]},
+           {"name": "Agence 4", "size": 743,
+              "children":[{"name": 2000, "size0": 2000}]}
+        ]
+     }
+]
+},
+
+{"name": "salariés2",
+   "children":[
+
+   {
+   "name": "client 1",
+   "children": [
+
+        {"name": "Agence 1", "size": 3938, 
+        "children":[{"name": 15000,"size1": 15000}]},
+        {"name": "Agence 2", "size": 3812,
+           "children":[{"name": 20000, "size1": 20000}]},
+        {"name": "Agence 3", "size": 6714,
+           "children":[{"name": 14000, "size1": 14000}]},
+        {"name": "Agence 4", "size": 743,
+           "children":[{"name": 15000, "size1": 15000}]}
+     ]
+  },{
+     "name": "client 2",
+     "children": [
+ 
+          {"name": "Agence 1", "size": 3938, 
+          "children":[{"name": 11100,"size1": 11100}]},
+          {"name": "Agence 2", "size": 3812,
+             "children":[{"name": 20000, "size1": 20000}]},
+          {"name": "Agence 3", "size": 6714,
+             "children":[{"name": 18000, "size1": 18000}]},
+          {"name": "Agence 4", "size": 743,
+             "children":[{"name": 18700, "size1": 18700}]}
+       ]
+    },{
+     "name": "client 3",
+     "children": [
+ 
+          {"name": "Agence 1", "size": 3938, 
+          "children":[{"name": 13000,"size1": 13000}]},
+          {"name": "Agence 2", "size": 3812,
+             "children":[{"name": 13000, "size1": 13000}]},
+          {"name": "Agence 3", "size": 6714,
+             "children":[{"name": 17500, "size1": 17500}]},
+          {"name": "Agence 4", "size": 743,
+             "children":[{"name": 19000, "size1": 19000}]}
+       ]
+    },{
+     "name": "client 4",
+     "children": [
+ 
+          {"name": "Agence 1", "size1": 3938, 
+          "children":[{"name": 12000,"size1": 12000}]},
+          {"name": "Agence 2", "size": 3812,
+             "children":[{"name": 20000, "size1": 20000}]},
+          {"name": "Agence 3", "size": 6714,
+             "children":[{"name": 14000, "size1": 14000}]},
+          {"name": "Agence 4", "size": 743,
+             "children":[{"name": 12000, "size1": 12000}]}
+       ]
+    }
+]
+},
+{"name": "salariés2",
+   "children":[
+
+   {
+   "name": "client 1",
+   "children": [
+
+        {"name": "Agence 1", "size": 3938, 
+        "children":[{"name": 15000,"size1": 15000}]},
+        {"name": "Agence 2", "size": 3812,
+           "children":[{"name": 20000, "size1": 20000}]},
+        {"name": "Agence 3", "size": 6714,
+           "children":[{"name": 14000, "size1": 14000}]},
+        {"name": "Agence 4", "size": 743,
+           "children":[{"name": 15000, "size1": 15000}]}
+     ]
+  },{
+     "name": "client 2",
+     "children": [
+ 
+          {"name": "Agence 1", "size": 3938, 
+          "children":[{"name": 11100,"size1": 11100}]},
+          {"name": "Agence 2", "size": 3812,
+             "children":[{"name": 20000, "size1": 20000}]},
+          {"name": "Agence 3", "size": 6714,
+             "children":[{"name": 18000, "size1": 18000}]},
+          {"name": "Agence 4", "size": 743,
+             "children":[{"name": 18700, "size1": 18700}]}
+       ]
+    },{
+     "name": "client 3",
+     "children": [
+ 
+          {"name": "Agence 1", "size": 3938, 
+          "children":[{"name": 13000,"size1": 13000}]},
+          {"name": "Agence 2", "size": 3812,
+             "children":[{"name": 13000, "size1": 13000}]},
+          {"name": "Agence 3", "size": 6714,
+             "children":[{"name": 17500, "size1": 17500}]},
+          {"name": "Agence 4", "size": 743,
+             "children":[{"name": 19000, "size1": 19000}]}
+       ]
+    },{
+     "name": "client 4",
+     "children": [
+ 
+          {"name": "Agence 1", "size1": 3938, 
+          "children":[{"name": 12000,"size1": 12000}]},
+          {"name": "Agence 2", "size": 3812,
+             "children":[{"name": 20000, "size1": 20000}]},
+          {"name": "Agence 3", "size": 6714,
+             "children":[{"name": 14000, "size1": 14000}]},
+          {"name": "Agence 4", "size": 743,
+             "children":[{"name": 12000, "size1": 12000}]}
+       ]
+    }
+]
+}
+
+
+
+
+]
+
+}
+
+
+
+

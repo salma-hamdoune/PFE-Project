@@ -7,10 +7,10 @@ function getRandomData(ordinal = false) {
         MINTIME = new Date(2013,2,21);
 
     const nCategories = Math.ceil(MAXCATEGORIES),
-        categoryLabels = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+        categoryLabels = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 
     return [...Array(NGROUPS).keys()].map(i => ({
-        group: 'group' + (i+1),
+        group: "group" + (i+1),
         data: getGroupData()
     }));
 
@@ -19,7 +19,7 @@ function getRandomData(ordinal = false) {
     function getGroupData() {
 
         return [...Array(Math.ceil(Math.random()*MAXLINES)).keys()].map(i => ({
-            label: 'label' + (i+1),
+            label: "label" + (i+1),
             data: getSegmentsData()
         }));
 

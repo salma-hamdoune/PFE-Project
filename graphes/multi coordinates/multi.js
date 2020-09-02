@@ -24,7 +24,7 @@ var svg = d3.select("#my_dataviz").append("svg")
 
 d3.csv("transactions2018withscores.csv", function(error, cars) {
 cars=cars.filter(function(row){
-return row["Account_No"]==="409000405747'";
+return row["Account_No"]==="409000405747"";
 })
 
 // Extract the list of dimensions and create a scale for each.
@@ -118,7 +118,7 @@ g.append("g")
 // })).range([height, 0]);
 // y[d].brush = d3.brushY()
 //   .extent([[-8, y[d].range()[1]], [8, y[d].range()[0]]])
-//   .on('brush', brush);
+//   .on("brush", brush);
 });
 
 

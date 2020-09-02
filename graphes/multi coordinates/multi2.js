@@ -25,7 +25,7 @@ d3.csv("transactions2018withscores.csv", function(data) {
    data.overall_score=+data.overall_score;  
 
    data=data.filter(function(row){
-    return row["Account_No"]==="409000405747'";
+    return row["Account_No"]==="409000405747"";
     })
 
    var axes_data = data.map(function(d) {
@@ -126,7 +126,7 @@ console.log(d3.keys(axes_data[0])[0].dtype)
     .data(axes_data)
     .enter()
     .append("path")
-    //   .attr("class", function (d) { return "line " + d.cluster } ) // 2 class for each line: 'line' and the group name
+    //   .attr("class", function (d) { return "line " + d.cluster } ) // 2 class for each line: "line" and the group name
       .attr("d",  path)
       .style("fill", "none" )
     //   .style("stroke", function(d){ return( color(d.cluster))} )
@@ -136,7 +136,7 @@ console.log(d3.keys(axes_data[0])[0].dtype)
 
 //   // Draw the axis:
 //   svg.selectAll("myAxis")
-//     // For each dimension of the dataset I add a 'g' element:
+//     // For each dimension of the dataset I add a "g" element:
 //     .data(dimensions).enter()
 //     .append("g")
 //     .attr("class", "axis")

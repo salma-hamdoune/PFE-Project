@@ -23,22 +23,22 @@
         .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")");
 Accounts=[
-  "1196428'",
-// // "1196711'",
-// //  "409000362497'",
-  "409000438611'",
-  "409000438620'"
-//  "409000493201'",
-// // "409000493210'",
-//  "409000611074'"
-//  'A',
-//  'B'
+  "1196428"",
+// // "1196711"",
+// //  "409000362497"",
+  "409000438611"",
+  "409000438620""
+//  "409000493201"",
+// // "409000493210"",
+//  "409000611074""
+//  "A",
+//  "B"
  ]
     //Read the data
     d3.csv("df18_ts.csv", function(data) {
         console.log(data)
       data=data.filter(function(row){
-            //  return row["Account_No"]==="409000438620'"
+            //  return row["Account_No"]==="409000438620""
             return Accounts.includes(row["Account_No"]);
            })
          console.log(data)
@@ -81,7 +81,7 @@ Accounts=[
       var res = sumstat.map(function(d){ return d.key }) // list of group names
       var color = d3.scaleOrdinal()
         .domain(res)
-        .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
+        .range(["#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628","#f781bf","#999999"])
     
       // Draw the line
       svg.selectAll(".line")

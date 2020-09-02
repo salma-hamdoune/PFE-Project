@@ -9,19 +9,19 @@
         
         var $document = $(document),
             $window = $(window),
-            $body = $('html, body'),
-            option = easing || 'default',
+            $body = $("html, body"),
+            option = easing || "default",
             root = 0,
             scroll = false,
             scrollY,
             scrollX,
             view;
           
-        if (window.navigator.msPointerEnabled || ($('#isIE').length > 0) ) // custom modification to detect IE
+        if (window.navigator.msPointerEnabled || ($("#isIE").length > 0) ) // custom modification to detect IE
         
             return false;
             
-        $window.on('mousewheel DOMMouseScroll', function(e) {
+        $window.on("mousewheel DOMMouseScroll", function(e) {
             
             var deltaY = e.originalEvent.wheelDeltaY,
                 detail = e.originalEvent.detail;
@@ -77,12 +77,12 @@
             
             return false;
             
-        }).on('scroll', function() {
+        }).on("scroll", function() {
             
             if (scrollY && !scroll) root = $window.scrollTop();
             if (scrollX && !scroll) root = $window.scrollLeft();
             
-        }).on('resize', function() {
+        }).on("resize", function() {
             
             if (scrollY && !scroll) view = $window.height();
             if (scrollX && !scroll) view = $window.width();

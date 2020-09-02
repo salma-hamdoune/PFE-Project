@@ -17,7 +17,7 @@ var svgarea = d3.select("#area")
 // choose a client
 d3.csv("df18_ts.csv").then(function(data){
   data=data.filter(function(row){
-    return row["Account_No"]==="1196428'";
+    return row["Account_No"]==="1196428"";
   //console.log(data)
   })
 //client.then(function(data){
@@ -34,7 +34,7 @@ d3.csv("df18_ts.csv").then(function(data){
   //console.log(data[0])
   
   // client=data.filter(function(row){
-  //   return row["Account_No"]==="409000611074'"
+  //   return row["Account_No"]==="409000611074""
   // })
   //console.log(client)
 
@@ -59,7 +59,7 @@ d3.csv("df18_ts.csv").then(function(data){
 
   console.log(d3.max(data, function(d) {
     return +d.withd_by_date; }))
-  // Add a clipPath: everything out of this area won't be drawn.
+  // Add a clipPath: everything out of this area won"t be drawn.
   var clip = svgarea.append("defs").append("svg:clipPath")
       .attr("id", "clip")
       .append("svg:rect")
@@ -71,10 +71,10 @@ d3.csv("df18_ts.csv").then(function(data){
   // Add brushing
   var brush = d3.brush()                   // Add the brush feature using the d3.brush function
       .extent( [ [0,0], [widtha,heighta] ] )  // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-      .on("end", updateChart)               // Each time the brush selection changes, trigger the 'updateChart' function
+      .on("end", updateChart)               // Each time the brush selection changes, trigger the "updateChart" function
 
   // Create the area variable: where both the area and the brush take place
-  var area = svgarea.append('g')
+  var area = svgarea.append("g")
     .attr("clip-path", "url(#clip)")
 
   // Create an area generator
@@ -130,7 +130,7 @@ d3.csv("df18_ts.csv").then(function(data){
     yAxis.transition().duration(1000).call(d3.axisLeft(y))
 
     area
-        .select('.myArea')
+        .select(".myArea")
         .transition()
         .duration(1000)
         .attr("d", areaGenerator)
@@ -145,7 +145,7 @@ svgarea.on("dblclick",function(){
 
   yAxis.transition().call(d3.axisLeft(y))
   area
-    .select('.myArea')
+    .select(".myArea")
     .transition()
     .attr("d", areaGenerator)
 });
