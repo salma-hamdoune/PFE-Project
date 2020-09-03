@@ -171,8 +171,8 @@ circle.hidden {
 <script>
 
 var width = 630,
-    size = 230,
-    padding = 20;
+    size = 300,
+    padding = 30;
 
 var x = d3.scaleLinear()
     .range([padding / 2, size - padding / 2]);
@@ -243,7 +243,7 @@ d3.csv("data matrix/tous_les_clientsless.csv", function(error, data) {
       .extent([[0,0],[size,size]]);
 
   var svg = d3.select("body").append("svg")
-       .attr("width", size * n + padding + 150)
+       .attr("width", size * n + padding + 300)
        .attr("height", size * n + padding + 150)
     .append("g")
       .attr("transform", "translate(" +3* padding + "," + padding / 2 + ")");
@@ -252,11 +252,11 @@ d3.csv("data matrix/tous_les_clientsless.csv", function(error, data) {
     // legend
 
     const legendGroup = svg.append('g')
-        .attr('transform', `translate(${width+100}, 10)`);
+        .attr('transform', `translate(${width+300}, 10)`);
 
     const legend = d3.legendColor()
         .shape('circle')
-        .shapePadding(30)
+        .shapePadding(10)
         .scale(color);
 
 

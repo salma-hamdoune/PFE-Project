@@ -22,6 +22,8 @@
 
 </head>
 
+
+
 <body>
 	<!-- header -->
 	<nav class="navbar navbar-fixed-top" id="header">
@@ -141,10 +143,15 @@
 .link:hover {
   stroke-opacity: .5;
 }
- 
+/* body {
+  background-image: url('img/attijari1.jpg');
+  background-repeat: no-repeat;
+  background-color: rgba(169, 169, 169, 0.075);
+  background-blend-mode: lighten;
+} */
 </style>
 <body>
- 
+<!-- <div style="background-image: url('img/attijari1.jpg');"> -->
 <p id="chart">
  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
@@ -153,8 +160,8 @@
   
 var units = "client(s)";
  
-var margin = {top: 10, right: 10, bottom: 10, left: 10},
-    width = 1200 - margin.left - margin.right,
+var margin = {top: 10, right: 10, bottom: 10, left: 30},
+    width = 1500 - margin.left - margin.right,
     height = 740 - margin.top - margin.bottom;
  
 var formatNumber = d3.format(",.0f"),    // zero decimal places
@@ -261,16 +268,6 @@ d3.json("data sankey/age-statut.json", function(error, graph) {
 });
  
 </script>
- 			<!-- 1st row -->
-			 <div id="revenue-spline-area-chart"></div>
-			 <!-- /1st row -->
-			 <!-- 2nd row -->
-		 <div id="annual-revenue-by-category-pie-chart"></div>
-		 <div id="monthly-revenue-by-category-column-chart"></div>
-			 <!-- /2nd row -->
-			 <!-- 3rd row -->
-		 <div id="visitors-chart"></div>
-		 <div id="users-spline-chart"></div>
- >			<!-- /3rd row -->
+
 </body>
 </html>

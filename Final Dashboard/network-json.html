@@ -143,13 +143,13 @@
 <script>
 
 
-var width = 1400,
-    height = 600,
-    padding = 20;
+var width = 1500,
+    height = 900,
+    padding = 10;
 
 var svg = d3.select("body").append("svg")
-       .attr("width", width + 150)
-       .attr("height", height + 150)
+       .attr("width", width )
+       .attr("height", height )
     .append("g")
       .attr("transform", "translate(" + padding + "," + padding / 2 + ")");
 
@@ -162,9 +162,9 @@ var svg = d3.select("body").append("svg")
 
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }))
-    .force("charge", d3.forceManyBody().strength(-1))
-    // .force("collide", d3.forceCollide())
-    .force("center", d3.forceCenter(width /2, height/2 ));
+    .force("charge", d3.forceManyBody().strength(-4))
+     .force("collide", d3.forceCollide())
+    .force("center", d3.forceCenter(width /2, height - (height/2.4) ));
 
 d3.json("data network/nodesmo1day1.json", function(error, graph) {
   if (error) throw error;
@@ -185,7 +185,7 @@ var color = d3.scaleOrdinal(d3.schemeCategory10)
     .enter().append("circle")
     // .attr("fill", color(d => d.group))
       .style("fill", function(d) { return color(d.group); })
-      .attr("r", 3)
+      .attr("r", 3.5)
       .call(d3.drag()
           .on("start", dragstarted)
           .on("drag", dragged)
